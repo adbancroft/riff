@@ -26,9 +26,9 @@ namespace Riff.Chunk
         /// <param name="source"></param>
         /// <param name="fourCc"></param>
         /// <returns></returns>
-        public static IEnumerable<ChunkBase> WhereFourCc(this IEnumerable<ChunkBase> source, string fourCc)
+        public static IEnumerable<ChunkBase> WhereListType(this IEnumerable<ChunkBase> source, string listType)
         {
-            return source.OfType<FourCcChunkBase>().Where(cb => cb.FourCC==fourCc);
+            return source.OfType<ListChunk>().Where(cb => cb.ListType==listType);
         }
     }
 }

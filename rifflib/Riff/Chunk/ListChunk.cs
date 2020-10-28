@@ -1,13 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
 namespace Riff.Chunk
 {
-    public class ListChunk : FourCcChunkBase
+    public class ListChunk : ChunkBase
     {
         [JsonProperty("ChildChunks", Order = 1)]
         private IList<ChunkBase> _subChunks;
+
+        public const int ListTypeSize = 4;
+
+        public String ListType { get; set; }
 
         public ListChunk(string identifier)
             : base(identifier)
@@ -17,7 +22,7 @@ namespace Riff.Chunk
         public override void Read(BinaryReader reader, IChunkFactory chunkFactory)
         {
             base.Read(reader, chunkFactory);
-
+            ListType = reader.ReadFixedString(ListTypeSize);
             _subChunks = ReadSubChunks(reader, chunkFactory, Size-LengthSize);
         }
 
