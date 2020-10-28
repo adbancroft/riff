@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Riff.Chunk
+namespace Riff.Read.Chunk
 {
     public class ListChunk : ChunkBase
     {
@@ -12,7 +12,7 @@ namespace Riff.Chunk
 
         public const int ListTypeSize = 4;
 
-        public String ListType { get; set; }
+        public String ListType { get; private set; }
 
         public ListChunk(string identifier)
             : base(identifier)

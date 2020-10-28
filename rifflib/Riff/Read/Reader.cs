@@ -1,12 +1,12 @@
 using System.IO;
-using Riff.Chunk;
+using Riff.Read.Chunk;
 
-namespace Riff
+namespace Riff.Read
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class RiffReader
+    public static class Reader
     {   
         /// <summary>
         /// Read a RIFF file into a series of chunks in a tree like structure.

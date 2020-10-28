@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Riff.Chunk
+namespace Riff.Read.Chunk
 {
     /// <summary>
     /// Shared chunk related methods.`

@@ -1,6 +1,6 @@
-using Riff.Chunk;
+using Riff.Read.Chunk;
 
-namespace Riff
+namespace Riff.Read
 {
     /// <summary>
     /// A <see cref="IChunkFactory"/> that works with the simplest chunk types.

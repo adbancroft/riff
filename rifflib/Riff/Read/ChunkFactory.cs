@@ -1,6 +1,6 @@
-using Riff.Chunk;
+using Riff.Read.Chunk;
 
-namespace Riff
+namespace Riff.Read
 {
     /// <summary>
     /// A chunk factory

@@ -1,6 +1,6 @@
 using Validation;
 
-namespace Riff.Chunk
+namespace Riff.Read.Chunk
 {
     /// <summary>
     /// Top level chunk that captures the entire RIFF file

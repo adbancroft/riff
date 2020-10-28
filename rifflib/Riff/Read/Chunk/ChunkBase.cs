@@ -6,7 +6,7 @@ using System.Linq;
 using System.Collections;
 using Newtonsoft.Json;
 
-namespace Riff.Chunk
+namespace Riff.Read.Chunk
 {
     /// <summary>
     /// Base class for all chunks.
@@ -51,24 +51,6 @@ namespace Riff.Chunk
         }
 
         /// <summary>
-        /// Chunk data could be very large, so we lazyily read it.
-        /// </summary>
-        /// <param name="source">The source stream. MUST BE THE SAME DATA SOURCE (E.G. FILE) AS WAS ORIGINALLY USED WITH Read()/param>
-        /// <remarks>
-        /// We do not store the BinaryRader used to read the header values: it's disposable, which in turn means
-        /// this class and sub-classes would also need to be disposable. That is too heavy a burden on all users
-        /// of this library.
-        /// </remarks>
-        public virtual byte[] ReadData(Stream source)
-        {
-            source.Seek(ChunkOffset + IdentifierSize + LengthSize, SeekOrigin.Begin);
-            using (var reader = new BinaryReader(source, System.Text.Encoding.ASCII, true))
-            {
-                return reader.ReadBytes(Size);
-            }
-        }
-
-        /// <summary>
         /// The offset of the start of this chunk from the beginning of the input stream 
         /// </summary>
         public long ChunkOffset { get; private set; }
@@ -77,7 +59,7 @@ namespace Riff.Chunk
         /// The 4 character chunk identifier. E.g. LIST
         /// </summary>
         /// <value></value>
-        public String Identifier { get; set; }
+        public String Identifier { get; private set; }
 
         /// <summary>
         /// Size of the chunk data in bytes.

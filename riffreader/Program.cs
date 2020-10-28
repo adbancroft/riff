@@ -17,7 +17,7 @@ namespace riffreader
                 {
                     using (var reader = new BinaryReader(viewStream, System.Text.Encoding.ASCII, false))
                     {
-                        var riffChunk = RiffReader.Read(reader, new BasicChunkFactory());
+                        var riffChunk = Riff.Read.Reader.Read(reader, new Riff.Read.BasicChunkFactory());
                         System.Console.Write(JsonConvert.SerializeObject(riffChunk));
                     }
                 }
