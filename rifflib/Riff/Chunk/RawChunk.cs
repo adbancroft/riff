@@ -12,7 +12,7 @@ namespace Riff.Chunk
         public override void Read(BinaryReader reader, IChunkFactory chunkFactory)
         {
             base.Read(reader, chunkFactory);
-            reader.BaseStream.Seek(Length+Padding, SeekOrigin.Current);
+            reader.BaseStream.Seek(Size+Padding, SeekOrigin.Current);
         }
     }
 }

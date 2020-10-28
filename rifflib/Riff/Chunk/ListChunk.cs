@@ -18,7 +18,7 @@ namespace Riff.Chunk
         {
             base.Read(reader, chunkFactory);
 
-            _subChunks = ReadSubChunks(reader, chunkFactory, Length-LengthSize);
+            _subChunks = ReadSubChunks(reader, chunkFactory, Size-LengthSize);
         }
 
         #region IEnumerable
