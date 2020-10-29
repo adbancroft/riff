@@ -17,10 +17,7 @@ namespace Riff.Read.Chunk
     [JsonObject]
     public abstract class ChunkDescriptorBase : IEnumerable<ChunkDescriptorBase>
     {        
-        /// <summary>
-        /// Size of the length field in bytes.
-        /// </summary>
-        public const int LengthSize = 4;
+
 
         /// <summary>
         /// Construct a new chunk
@@ -63,6 +60,12 @@ namespace Riff.Read.Chunk
         /// Size gives the size of the valid data in the chunk; it does not include the padding, the size of the identifier, or the size of the size field itself.
         /// </remarks>
         public int Size { get; private set; }
+
+        /// <summary>
+        /// Create the corresponding write chunk
+        /// </summary>
+        /// <returns></returns>
+        public abstract Riff.Write.Chunk.ChunkBase CreateWriteChunk();
 
         #region IEnumerable
 

@@ -21,7 +21,13 @@ namespace Riff.Read.Chunk
         {
             base.Read(reader, chunkFactory);
             ListType = reader.ReadFixedString(RiffUtils.ListTypeSize);
-            _subChunks = ReadSubChunks(reader, chunkFactory, Size-LengthSize);
+            _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.LengthSize);
+        }
+
+        // <inheritdoc>
+        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
+        {
+            return new Riff.Write.Chunk.ListChunk(this);
         }
 
         #region IEnumerable

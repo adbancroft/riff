@@ -9,20 +9,27 @@ namespace Riff.Write.Chunk
     {
         private readonly IList<ChunkBase> _subChunks = new List<ChunkBase>();
 
-        public String ListType { get; set; }
-
-         public override int Size 
-         {
-            get 
+        public ListChunk()
+        {
+        }
+        public ListChunk(Riff.Read.Chunk.ListChunkDescriptor source)
+        {
+            Identifier = source.Identifier;
+            ListType = source.ListType;
+            foreach (var descriptor in source)
             {
-                return RiffUtils.ListTypeSize + _subChunks.Sum(s => s.Size);
+                _subChunks.Add(descriptor.CreateWriteChunk());
             }
         }
+
+        public String ListType { get; set; }
+
+        public override int DataSize => RiffUtils.ListTypeSize + _subChunks.Sum(s => s.TotalSize);
 
         public override void Write(BinaryWriter writer)
         {
             base.Write(writer);
-            writer.WriteFixedString(ListType, RiffUtils.IdentifierSize);
+            writer.WriteFixedString(ListType, RiffUtils.ListTypeSize);
             foreach (var item in _subChunks)
             {
                 item.Write(writer);

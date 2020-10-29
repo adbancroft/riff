@@ -21,15 +21,18 @@ namespace Riff.Write.Chunk
         public String Identifier { get; set; }
 
         /// <summary>
-        /// Size of the chunk data
+        /// Size of the chunk data. 
+        /// Does not include the size of the <cref="Identifier"> or this field
         /// </summary>
         /// <value></value>
-        public abstract int Size { get; }
+        public abstract int DataSize { get; }
+
+        public int TotalSize => DataSize + RiffUtils.IdentifierSize + RiffUtils.LengthSize;
 
         public virtual void Write(BinaryWriter writer)
         {
             writer.WriteFixedString(Identifier, RiffUtils.IdentifierSize);
-            writer.Write(Size);
+            writer.Write(DataSize);
         }
         
         #region IList<>

@@ -21,11 +21,11 @@ namespace riffreader
                         var riffChunk = Riff.Read.Reader.Read(reader, new Riff.Read.BasicChunkFactory());
                         System.Console.Write(JsonConvert.SerializeObject(riffChunk));
 
-                        var hdr = new Riff.Write.Chunk.ListChunk();
-                        hdr.Identifier = riffChunk.Identifier;
-                        hdr.ListType = riffChunk.ListType;
-                        hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[43] });
-                        hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[26] });
+                        var hdr = new Riff.Write.Chunk.ListChunk(riffChunk);
+                        // hdr.Identifier = riffChunk.Identifier;
+                        // hdr.ListType = riffChunk.ListType;
+                        // hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[43] });
+                        // hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[26] });
                         using (var fs = new FileStream(@"C:\scratch\test.riff", FileMode.OpenOrCreate))
                         {
                             using (var writer = new BinaryWriter(fs, System.Text.Encoding.ASCII, false))

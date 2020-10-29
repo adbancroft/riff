@@ -16,5 +16,11 @@ namespace Riff.Read.Chunk
             // Note that the data is always padded to the nearest word boundary
             reader.BaseStream.Seek(Size+RiffUtils.CalculatePadding(Size), SeekOrigin.Current);
         }
+
+        // <inheritdoc>
+        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
+        {
+            return new Riff.Write.Chunk.RawChunk(this);
+        }
     }
 }
