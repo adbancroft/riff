@@ -1,4 +1,5 @@
 using System.IO;
+using Riff.Write.Chunk.Lazy;
 
 namespace Riff.Read.Chunk
 {
@@ -17,9 +18,9 @@ namespace Riff.Read.Chunk
         }
 
         // <inheritdoc>
-        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
+        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk(ISourceStreamProvider provider)
         {
-            return new Riff.Write.Chunk.RawChunk(this);
+            return new LazyReadRawChunk(this, provider);
         }
     }
 }

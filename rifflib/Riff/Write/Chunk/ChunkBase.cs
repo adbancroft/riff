@@ -18,7 +18,7 @@ namespace Riff.Write.Chunk
         /// The 4 character chunk identifier. E.g. LIST
         /// </summary>
         /// <value></value>
-        public String Identifier { get; set; }
+        public virtual String Identifier { get; set; }
 
         /// <summary>
         /// Size of the chunk data. 
@@ -27,8 +27,7 @@ namespace Riff.Write.Chunk
         /// <value></value>
         public abstract int DataSize { get; }
 
-        public int TotalSize => DataSize + RiffUtils.IdentifierSize + RiffUtils.LengthSize;
-
+        public int TotalSize => DataSize + RiffUtils.CalculatePadding(DataSize) + RiffUtils.IdentifierSize + RiffUtils.LengthSize;
 
         /// <summary>
         /// 

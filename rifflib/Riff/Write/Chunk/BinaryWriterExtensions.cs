@@ -19,5 +19,18 @@ namespace Riff.Write.Chunk
             toWrite = toWrite.PadRight(size).Substring(0, size);
             writer.Write(System.Text.Encoding.ASCII.GetBytes(toWrite));
         }
+
+        public static void WriteChunkData(this BinaryWriter writer, byte[] data)
+        {
+            writer.Write(data ?? new byte[0]);
+
+            // The data is always padded to the nearest word boundary
+            int padding = RiffUtils.CalculatePadding(data?.Length ?? 0);
+            while (padding!=0)
+            {
+                writer.Write(new byte());
+                --padding;
+            }
+        }
     }
 }

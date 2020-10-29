@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using Riff.Write.Chunk.Lazy;
 
 namespace Riff.Read.Chunk
 {
@@ -24,9 +25,9 @@ namespace Riff.Read.Chunk
         }
 
         // <inheritdoc>
-        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
+        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk(ISourceStreamProvider provider)
         {
-            return new Riff.Write.Chunk.ListChunk(this);
+            return new Riff.Write.Chunk.ListChunk(this, provider);
         }
 
         #region IEnumerable

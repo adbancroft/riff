@@ -5,6 +5,7 @@ using Validation;
 using System.Linq;
 using System.Collections;
 using Newtonsoft.Json;
+using Riff.Write.Chunk.Lazy;
 
 namespace Riff.Read.Chunk
 {
@@ -68,8 +69,7 @@ namespace Riff.Read.Chunk
         /// <summary>
         /// Create the corresponding write chunk
         /// </summary>
-        /// <returns></returns>
-        public abstract Riff.Write.Chunk.ChunkBase CreateWriteChunk();
+        public abstract Riff.Write.Chunk.ChunkBase CreateWriteChunk(ISourceStreamProvider provider);
 
         #region IEnumerable
 

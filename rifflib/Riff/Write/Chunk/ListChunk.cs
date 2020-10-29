@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Riff.Write.Chunk.Lazy;
 
 namespace Riff.Write.Chunk
 {
@@ -12,13 +13,13 @@ namespace Riff.Write.Chunk
         public ListChunk()
         {
         }
-        public ListChunk(Riff.Read.Chunk.ListChunkDescriptor source)
+        public ListChunk(Riff.Read.Chunk.ListChunkDescriptor source, ISourceStreamProvider lazyReadProvider)
         {
             Identifier = source.Identifier;
             ListType = source.ListType;
             foreach (var descriptor in source)
             {
-                _subChunks.Add(descriptor.CreateWriteChunk());
+                _subChunks.Add(descriptor.CreateWriteChunk(lazyReadProvider));
             }
         }
 
