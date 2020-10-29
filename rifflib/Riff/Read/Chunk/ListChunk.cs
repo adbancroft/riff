@@ -10,8 +10,6 @@ namespace Riff.Read.Chunk
         [JsonProperty("ChildChunks", Order = 1)]
         private IList<ChunkBase> _subChunks;
 
-        public const int ListTypeSize = 4;
-
         public String ListType { get; private set; }
 
         public ListChunk(string identifier)
@@ -22,7 +20,7 @@ namespace Riff.Read.Chunk
         public override void Read(BinaryReader reader, IChunkFactory chunkFactory)
         {
             base.Read(reader, chunkFactory);
-            ListType = reader.ReadFixedString(ListTypeSize);
+            ListType = reader.ReadFixedString(RiffUtils.ListTypeSize);
             _subChunks = ReadSubChunks(reader, chunkFactory, Size-LengthSize);
         }
 

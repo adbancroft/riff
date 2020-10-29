@@ -16,12 +16,7 @@ namespace Riff.Read.Chunk
     /// </remarks>
     [JsonObject]
     public abstract class ChunkBase : IEnumerable<ChunkBase>
-    {
-        /// <summary>
-        /// Size of the identifier field in bytes.
-        /// </summary>
-        public const int IdentifierSize = 4;
-        
+    {        
         /// <summary>
         /// Size of the length field in bytes.
         /// </summary>
@@ -46,7 +41,7 @@ namespace Riff.Read.Chunk
         /// <param name="chunkFactory">Used by derived classes to create new child chunks</param>
         public virtual void Read(BinaryReader reader, IChunkFactory chunkFactory)
         {
-            ChunkOffset = reader.BaseStream.Position-IdentifierSize;
+            ChunkOffset = reader.BaseStream.Position-RiffUtils.IdentifierSize;
             Size = reader.ReadInt32();
         }
 
@@ -68,21 +63,6 @@ namespace Riff.Read.Chunk
         /// Size gives the size of the valid data in the chunk; it does not include the padding, the size of the identifier, or the size of the size field itself.
         /// </remarks>
         public int Size { get; private set; }
-
-        /// <summary>
-        /// Size of any necessary padding that may follow the variable length data field
-        /// </summary>
-        /// <remarks>
-        /// The data is always padded to nearest WORD boundary
-        /// </remarks>
-        public int Padding
-        {
-            get
-            {
-                var wordSize = sizeof(short);
-                return ((Size + wordSize - 1) / wordSize * wordSize) - Size;
-            }
-        }
 
         #region IEnumerable
 

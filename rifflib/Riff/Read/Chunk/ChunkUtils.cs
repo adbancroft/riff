@@ -12,7 +12,7 @@ namespace Riff.Read.Chunk
         /// </summary>
         public static string ReadIdentifier(BinaryReader source)
         {
-            return source.ReadFixedString(ChunkBase.IdentifierSize);
+            return source.ReadFixedString(RiffUtils.IdentifierSize);
         }
     }
 }
