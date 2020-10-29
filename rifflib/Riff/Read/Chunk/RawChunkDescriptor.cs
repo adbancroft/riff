@@ -9,10 +9,9 @@ namespace Riff.Read.Chunk
         {
         }
 
-        public override void Read(BinaryReader reader, IChunkFactory chunkFactory)
+        protected override void ReadData(BinaryReader reader, IChunkFactory chunkFactory)
         {
-            base.Read(reader, chunkFactory);
-            // Callers expect the reader to point to the 1st byte
+            // Callers expect the reader to point to the 1st byte after this chunk
             // Note that the data is always padded to the nearest word boundary
             reader.BaseStream.Seek(Size+RiffUtils.CalculatePadding(Size), SeekOrigin.Current);
         }

@@ -29,11 +29,21 @@ namespace Riff.Write.Chunk
 
         public int TotalSize => DataSize + RiffUtils.IdentifierSize + RiffUtils.LengthSize;
 
-        public virtual void Write(BinaryWriter writer)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="writer"></param>
+        public void Write(BinaryWriter writer)
         {
             writer.WriteFixedString(Identifier, RiffUtils.IdentifierSize);
             writer.Write(DataSize);
+
+            // Use Template Method pattern to write data
+            WriteData(writer);
         }
+
+        protected abstract void WriteData(BinaryWriter writer);
         
         #region IList<>
 

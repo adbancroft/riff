@@ -17,9 +17,8 @@ namespace Riff.Read.Chunk
         {
         }
 
-        public override void Read(BinaryReader reader, IChunkFactory chunkFactory)
+        protected override void ReadData(BinaryReader reader, IChunkFactory chunkFactory)
         {
-            base.Read(reader, chunkFactory);
             ListType = reader.ReadFixedString(RiffUtils.ListTypeSize);
             _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.LengthSize);
         }

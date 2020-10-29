@@ -18,9 +18,8 @@ namespace Riff.Write.Chunk
             //_source = source;
         }
 
-        public override void Write(BinaryWriter writer)
+        protected override void WriteData(BinaryWriter writer)
         {
-            base.Write(writer);
             writer.Write(Data ?? new byte[0]);
 
             // The data is always padded to the nearest word boundary

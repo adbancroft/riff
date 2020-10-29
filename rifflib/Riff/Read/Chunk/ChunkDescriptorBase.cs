@@ -16,9 +16,7 @@ namespace Riff.Read.Chunk
     /// </remarks>
     [JsonObject]
     public abstract class ChunkDescriptorBase : IEnumerable<ChunkDescriptorBase>
-    {        
-
-
+    {
         /// <summary>
         /// Construct a new chunk
         /// </summary>
@@ -40,7 +38,13 @@ namespace Riff.Read.Chunk
         {
             ChunkOffset = reader.BaseStream.Position-RiffUtils.IdentifierSize;
             Size = reader.ReadInt32();
+            
+            // Use Template Method pattern to write data
+            ReadData(reader, chunkFactory);
         }
+
+        // Derived classes to override to read the chunk data
+        protected abstract void ReadData(BinaryReader reader, IChunkFactory chunkFactory);
 
         /// <summary>
         /// The offset of the start of this chunk from the beginning of the input stream 
