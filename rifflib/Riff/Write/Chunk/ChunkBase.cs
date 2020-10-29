@@ -17,20 +17,22 @@ namespace Riff.Write.Chunk
         /// <summary>
         /// The 4 character chunk identifier. E.g. LIST
         /// </summary>
-        /// <value></value>
         public virtual String Identifier { get; set; }
 
         /// <summary>
         /// Size of the chunk data. 
         /// Does not include the size of the <cref="Identifier"> or this field
         /// </summary>
-        /// <value></value>
         public abstract int DataSize { get; }
 
-        public int TotalSize => DataSize + RiffUtils.CalculatePadding(DataSize) + RiffUtils.IdentifierSize + RiffUtils.LengthSize;
+        /// <summary>
+        /// Size of the chunk on disk.
+        /// Must include padding.
+        /// </summary>
+        public abstract int TotalSize { get ; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="writer"></param>
         public void Write(BinaryWriter writer)

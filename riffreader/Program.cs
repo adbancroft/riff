@@ -25,7 +25,7 @@ namespace riffreader
             // hdr.ListType = riffChunk.ListType;
             // hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[43] });
             // hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[26] });
-            string writePath = @"C:\scratch\test.riff";
+            string writePath = @"C:\scratch\test.avi";
             using (var writer = new BinaryWriter(new FileStream(writePath, FileMode.OpenOrCreate)))
             {
                 hdr.Write(writer);

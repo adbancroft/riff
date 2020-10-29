@@ -6,7 +6,9 @@ namespace Riff.Write.Chunk
     {
         public virtual byte[] Data { get; set; }
 
-        public override int DataSize { get { return Data?.Length ?? 0; } }
+        public override int DataSize => Data?.Length ?? 0;
+
+        public override int TotalSize => RiffUtils.CalculateChunkDiskSize(DataSize);
 
         protected override void WriteData(BinaryWriter writer)
         {

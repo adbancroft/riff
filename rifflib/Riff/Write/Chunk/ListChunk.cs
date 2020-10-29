@@ -27,6 +27,8 @@ namespace Riff.Write.Chunk
 
         public override int DataSize => RiffUtils.ListTypeSize + _subChunks.Sum(s => s.TotalSize);
 
+        public override int TotalSize => RiffUtils.HeaderSize + DataSize;
+
         protected override void WriteData(BinaryWriter writer)
         {
             writer.WriteFixedString(ListType, RiffUtils.ListTypeSize);

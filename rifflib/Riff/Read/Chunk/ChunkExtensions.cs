@@ -20,7 +20,7 @@ namespace Riff.Read.Chunk
         /// </remarks>
         static public byte[] ReadData(this ChunkDescriptorBase chunk, Stream source)
         {
-            source.Seek(chunk.ChunkOffset + RiffUtils.IdentifierSize + RiffUtils.LengthSize, SeekOrigin.Begin);
+            source.Seek(chunk.ChunkOffset + RiffUtils.HeaderSize, SeekOrigin.Begin);
             using (var reader = new BinaryReader(source, System.Text.Encoding.ASCII, true))
             {
                 return reader.ReadBytes(chunk.Size);

@@ -17,6 +17,8 @@ namespace Riff.Write.Chunk.Lazy
         public override int DataSize => _source.Size;
 
         public override string Identifier => _source.Identifier;
+
+        public override int TotalSize  => RiffUtils.CalculateChunkDiskSize(DataSize);
         
         protected override void WriteData(BinaryWriter writer)
         {
