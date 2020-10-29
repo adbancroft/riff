@@ -18,9 +18,9 @@ namespace Riff.Read.Chunk
         /// this class and sub-classes would also need to be disposable. That is too heavy a burden on all users
         /// of this library.
         /// </remarks>
-        static public byte[] ReadData(this ChunkBase chunk, Stream source)
+        static public byte[] ReadData(this ChunkDescriptorBase chunk, Stream source)
         {
-            source.Seek(chunk.ChunkOffset + RiffUtils.IdentifierSize + ChunkBase.LengthSize, SeekOrigin.Begin);
+            source.Seek(chunk.ChunkOffset + RiffUtils.IdentifierSize + ChunkDescriptorBase.LengthSize, SeekOrigin.Begin);
             using (var reader = new BinaryReader(source, System.Text.Encoding.ASCII, true))
             {
                 return reader.ReadBytes(chunk.Size);
@@ -33,7 +33,7 @@ namespace Riff.Read.Chunk
         /// <param name="chunk"></param>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static string ReadStringData(this ChunkBase chunk, Stream source)
+        public static string ReadStringData(this ChunkDescriptorBase chunk, Stream source)
         {
            return System.Text.Encoding.ASCII.GetString(chunk.ReadData(source)); 
         }       
@@ -44,9 +44,9 @@ namespace Riff.Read.Chunk
         /// <param name="source"></param>
         /// <param name="fourCc"></param>
         /// <returns></returns>
-        public static IEnumerable<ChunkBase> WhereListType(this IEnumerable<ChunkBase> source, string listType)
+        public static IEnumerable<ChunkDescriptorBase> WhereListType(this IEnumerable<ChunkDescriptorBase> source, string listType)
         {
-            return source.OfType<ListChunk>().Where(cb => cb.ListType==listType);
+            return source.OfType<ListChunkDescriptor>().Where(cb => cb.ListType==listType);
         }
     }
 }

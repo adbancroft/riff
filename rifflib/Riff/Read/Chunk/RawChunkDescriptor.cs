@@ -2,9 +2,9 @@ using System.IO;
 
 namespace Riff.Read.Chunk
 {
-    public class RawChunk : ChunkBase 
+    public class RawChunkDescriptor : ChunkDescriptorBase 
     {
-        public RawChunk(string identifier)
+        public RawChunkDescriptor(string identifier)
             : base(identifier)
         {
         }

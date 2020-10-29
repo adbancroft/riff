@@ -5,14 +5,14 @@ using Newtonsoft.Json;
 
 namespace Riff.Read.Chunk
 {
-    public class ListChunk : ChunkBase
+    public class ListChunkDescriptor : ChunkDescriptorBase
     {
         [JsonProperty("ChildChunks", Order = 1)]
-        private IList<ChunkBase> _subChunks;
+        private IList<ChunkDescriptorBase> _subChunks;
 
         public String ListType { get; private set; }
 
-        public ListChunk(string identifier)
+        public ListChunkDescriptor(string identifier)
             : base(identifier)
         {
         }
@@ -26,21 +26,21 @@ namespace Riff.Read.Chunk
 
         #region IEnumerable
 
-        public override IEnumerator<ChunkBase> GetEnumerator()
+        public override IEnumerator<ChunkDescriptorBase> GetEnumerator()
         {
             return _subChunks.GetEnumerator();
         }
         
         #endregion
 
-        private static IList<ChunkBase> ReadSubChunks(BinaryReader reader, IChunkFactory chunkFactory, int expectedLength)
+        private static IList<ChunkDescriptorBase> ReadSubChunks(BinaryReader reader, IChunkFactory chunkFactory, int expectedLength)
         {
             var endOffset = reader.BaseStream.Position+expectedLength;
 
-            var chunks = new List<ChunkBase>();
+            var chunks = new List<ChunkDescriptorBase>();
             while (reader.BaseStream.Position<endOffset)
             {
-                ChunkBase next = chunkFactory.Create(ChunkUtils.ReadIdentifier(reader));
+                ChunkDescriptorBase next = chunkFactory.Create(ChunkUtils.ReadIdentifier(reader));
                 next.Read(reader, chunkFactory);
                 chunks.Add(next);
                 

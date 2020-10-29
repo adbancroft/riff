@@ -17,9 +17,9 @@ namespace Riff.Read.Chunk
     ///
     /// See https://docs.microsoft.com/en-us/windows/win32/directshow/avi-riff-file-reference for details.
     /// </remarks>
-    public class RiffChunk : ListChunk
+    public class RiffChunkDescriptor : ListChunkDescriptor
     {
-        public RiffChunk(string identifier) : base(identifier)
+        public RiffChunkDescriptor(string identifier) : base(identifier)
         {
             Requires.Argument(identifier.ToLowerInvariant()=="riff", nameof(identifier), "Invalid identifier: "+ identifier);
         }

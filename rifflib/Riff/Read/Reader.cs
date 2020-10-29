@@ -16,9 +16,9 @@ namespace Riff.Read
         /// <remarks>
         /// See https://docs.microsoft.com/en-us/windows/win32/directshow/avi-riff-file-reference for details.
         /// </remarks>
-        public static RiffChunk Read(BinaryReader reader, IChunkFactory chunkFactory)
+        public static RiffChunkDescriptor Read(BinaryReader reader, IChunkFactory chunkFactory)
         {
-            var topChunk = new RiffChunk(ChunkUtils.ReadIdentifier(reader));
+            var topChunk = new RiffChunkDescriptor(ChunkUtils.ReadIdentifier(reader));
             topChunk.Read(reader, chunkFactory);
             return topChunk;
         }

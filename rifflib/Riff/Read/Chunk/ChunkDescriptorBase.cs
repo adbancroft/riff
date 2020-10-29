@@ -15,7 +15,7 @@ namespace Riff.Read.Chunk
     /// Chunks can contain other chunks, in a tree structure.
     /// </remarks>
     [JsonObject]
-    public abstract class ChunkBase : IEnumerable<ChunkBase>
+    public abstract class ChunkDescriptorBase : IEnumerable<ChunkDescriptorBase>
     {        
         /// <summary>
         /// Size of the length field in bytes.
@@ -26,7 +26,7 @@ namespace Riff.Read.Chunk
         /// Construct a new chunk
         /// </summary>
         /// <param name="identifier">The 4 character chunk identifier</param>
-        protected ChunkBase(string identifier)
+        protected ChunkDescriptorBase(string identifier)
         {
             Requires.NotNullOrWhiteSpace(identifier, nameof(identifier));
             Requires.Argument(identifier.Length==4, nameof(identifier), "Invalid identifier: "+ identifier);
@@ -71,9 +71,9 @@ namespace Riff.Read.Chunk
             return GetEnumerator();
         }
 
-        virtual public IEnumerator<ChunkBase> GetEnumerator()
+        virtual public IEnumerator<ChunkDescriptorBase> GetEnumerator()
         {
-            return Enumerable.Empty<ChunkBase>().GetEnumerator();
+            return Enumerable.Empty<ChunkDescriptorBase>().GetEnumerator();
         }
 
         #endregion

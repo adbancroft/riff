@@ -11,6 +11,6 @@ namespace Riff.Read
         /// Create the appropriate chunk instance based on the identifier
         /// </summary>
         /// <param name="identifier">4 character chunk identifier</param>
-        ChunkBase Create(string identifier);
+        ChunkDescriptorBase Create(string identifier);
     }
 }

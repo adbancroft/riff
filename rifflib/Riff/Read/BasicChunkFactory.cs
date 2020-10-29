@@ -8,12 +8,12 @@ namespace Riff.Read
     public class BasicChunkFactory : IChunkFactory
     {
         ///<inheritdoc/>
-        public ChunkBase Create(string identifier)
+        public ChunkDescriptorBase Create(string identifier)
         {
             switch (identifier)
             {
-                case "LIST": return new ListChunk(identifier);
-                default: return new RawChunk(identifier);
+                case "LIST": return new ListChunkDescriptor(identifier);
+                default: return new RawChunkDescriptor(identifier);
             }
         }
     }
