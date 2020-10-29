@@ -17,7 +17,7 @@ namespace Riff.Write.Chunk
             int padding = RiffUtils.CalculatePadding(Data.Length);
             while (padding!=0)
             {
-                writer.Write(new byte(0));
+                writer.Write(new byte());
                 --padding;
             }
         }
