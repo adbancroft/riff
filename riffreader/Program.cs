@@ -21,7 +21,7 @@ namespace riffreader
                         var riffChunk = Riff.Read.Reader.Read(reader, new Riff.Read.BasicChunkFactory());
                         System.Console.Write(JsonConvert.SerializeObject(riffChunk));
 
-                        var hdr = new Riff.Write.Chunk.ListChunk(riffChunk);
+                        var hdr = riffChunk.CreateWriteChunk();
                         // hdr.Identifier = riffChunk.Identifier;
                         // hdr.ListType = riffChunk.ListType;
                         // hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[43] });

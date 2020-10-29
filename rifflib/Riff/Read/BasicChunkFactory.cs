@@ -10,9 +10,10 @@ namespace Riff.Read
         ///<inheritdoc/>
         public ChunkDescriptorBase Create(string identifier)
         {
-            switch (identifier)
-            {
-                case "LIST": return new ListChunkDescriptor(identifier);
+            switch (identifier.ToLowerInvariant())
+            { 
+                case "riff": return new RiffChunkDescriptor();
+                case "list": return new ListChunkDescriptor(identifier);
                 default: return new RawChunkDescriptor(identifier);
             }
         }

@@ -19,9 +19,8 @@ namespace Riff.Read.Chunk
     /// </remarks>
     public class RiffChunkDescriptor : ListChunkDescriptor
     {
-        public RiffChunkDescriptor(string identifier) : base(identifier)
+        public RiffChunkDescriptor() : base("RIFF")
         {
-            Requires.Argument(identifier.ToLowerInvariant()=="riff", nameof(identifier), "Invalid identifier: "+ identifier);
         }
     }
 }
