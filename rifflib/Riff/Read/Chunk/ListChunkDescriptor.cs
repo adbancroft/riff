@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using Validation;
 
 namespace Riff.Read.Chunk
 {
@@ -28,7 +29,12 @@ namespace Riff.Read.Chunk
         public ListChunkDescriptor(string identifier, BinaryReader reader, IChunkFactory chunkFactory)
             : base(identifier, reader)
         {
+            Requires.NotNull(chunkFactory, nameof(chunkFactory));
+
             ListType = reader.ReadFixedString(RiffUtils.ListTypeSize);
+            Assumes.NotNullOrEmpty(ListType);
+            Assumes.True(ListType.Length==4, "Invalid list type: "+ ListType);
+
             _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.LengthSize);
         }
 

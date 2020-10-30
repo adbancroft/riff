@@ -26,7 +26,8 @@ namespace Riff.Read.Chunk
         {
             Requires.NotNullOrWhiteSpace(identifier, nameof(identifier));
             Requires.Argument(identifier.Length==4, nameof(identifier), "Invalid identifier: "+ identifier);
-
+            Requires.NotNull(reader, nameof(reader));
+            
             Identifier = identifier;
             ChunkOffset = reader.BaseStream.Position-RiffUtils.IdentifierSize;
             Size = reader.ReadInt32();
