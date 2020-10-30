@@ -9,9 +9,9 @@ namespace Riff.Read
     public class BasicChunkFactory : IChunkFactory
     {
         private readonly BinaryReader _reader;
-        private readonly ISourceStreamProvider _streamProvider;
+        private readonly IStreamProvider _streamProvider;
 
-        public BasicChunkFactory(BinaryReader reader, ISourceStreamProvider streamProvider)
+        public BasicChunkFactory(BinaryReader reader, IStreamProvider streamProvider)
         {
             _reader = reader;
             _streamProvider = streamProvider;

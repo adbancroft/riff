@@ -1,12 +1,20 @@
 using System.IO;
 
-namespace Riff.Read.Chunk
+namespace Riff.Read
 {
     /// <summary>
-    /// BinaryReader extension methodss
+    /// BinaryReader extension methods
     /// </summary>
     public static class BinaryReaderExtensions
     {
+        /// <summary>
+        /// Read a chunk identifier from the reader.
+        /// </summary>
+        public static string ReadIdentifier(this BinaryReader source)
+        {
+            return source.ReadFixedString(RiffUtils.IdentifierSize);
+        }
+
         /// <summary>
         /// Read a fixed length ASCII string from the binary reader.
         /// </summary>

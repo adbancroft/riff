@@ -9,9 +9,10 @@ using Newtonsoft.Json;
 namespace Riff.Read.Chunk
 {
     /// <summary>
-    /// Base class for all chunks.
+    /// Base class for all chunk descriptors read from a RIFF file.
     /// </summary>
     /// <remarks>
+    /// Chunk descriptors are immutable and initialized by reading from a BinaryReader on construction
     /// Chunks can contain other chunks, in a tree structure.
     /// </remarks>
     [JsonObject]

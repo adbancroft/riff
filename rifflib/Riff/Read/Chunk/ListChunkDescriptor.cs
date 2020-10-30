@@ -5,13 +5,26 @@ using Newtonsoft.Json;
 
 namespace Riff.Read.Chunk
 {
+    /// <summary>
+    /// A chunk descriptor that has child chunks.
+    /// </summary>
     public class ListChunkDescriptor : ChunkDescriptorBase
     {
         [JsonProperty("ChildChunks", Order = 1)]
         private IList<ChunkDescriptorBase> _subChunks;
 
+        /// <summary>
+        /// THe list type FourCC tag 
+        /// </summary>
+        /// <value></value>
         public String ListType { get; private set; }
 
+        /// <summary>
+        /// Construct by reading from a BinaryReader
+        /// </summary>
+        /// <param name="identifier">The chunk identifer</param>
+        /// <param name="reader">The source to read from</param>
+        /// <param name="chunkFactory">Used to create child chunks</param>
         public ListChunkDescriptor(string identifier, BinaryReader reader, IChunkFactory chunkFactory)
             : base(identifier, reader)
         {
@@ -41,7 +54,7 @@ namespace Riff.Read.Chunk
             var chunks = new List<ChunkDescriptorBase>();
             while (reader.BaseStream.Position<endOffset)
             {
-                chunks.Add(chunkFactory.Create(ChunkUtils.ReadIdentifier(reader)));                
+                chunks.Add(chunkFactory.Create(reader.ReadIdentifier()));                
             }
             
             return chunks;
