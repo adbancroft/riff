@@ -2,9 +2,12 @@ using System.IO;
 
 namespace Riff.Write.Chunk
 {
+    /// <summary>
+    /// Encapsulates a chunk with a byte[] data payload
+    /// </summary>
     public class RawChunk : ChunkBase
     {
-        public virtual byte[] Data { get; set; }
+        public byte[] Data { get; set; }
 
         public override int DataSize => Data?.Length ?? 0;
 

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Riff.Write.Chunk.Lazy;
 
 namespace Riff.Write.Chunk
 {
