@@ -1,5 +1,5 @@
 using System.IO;
-using Riff.Write.Chunk.Lazy;
+using Riff.Write.Chunk;
 using Validation;
 
 namespace Riff.Read.Chunk

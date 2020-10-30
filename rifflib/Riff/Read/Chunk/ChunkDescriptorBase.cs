@@ -5,7 +5,6 @@ using Validation;
 using System.Linq;
 using System.Collections;
 using Newtonsoft.Json;
-using Riff.Write.Chunk.Lazy;
 
 namespace Riff.Read.Chunk
 {
