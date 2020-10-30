@@ -3,10 +3,10 @@ using System.IO;
 namespace Riff.Read.Chunk
 {
     /// <summary>
-    /// RIFF file chunk data can be very large, so it is lazy loaded. However, storing a Stream or Reader object in each chunk
+    /// RIFF file chunk data can be very large, so we provide options to lazy load. However, storing a Stream or Reader object in each chunk
     /// will require all chunk classes to implement IDisposable. That is a large burden on implementers and consumers.
     /// 
-    /// Instead we use instances of this interface to proxy the source RIFF file stream and provide it on demand.
+    /// Instead we use instances of this interface to proxy the source RIFF stream and provide it on demand.
     /// </summary>
     public interface IStreamProvider 
     {

@@ -5,7 +5,7 @@ using Validation;
 namespace Riff.Read.Chunk
 {
     /// <summary>
-    /// A chunk that has a byte[] payload.
+    /// A chunk that has a byte[] payload that is lazily loaded on demand
     /// </summary>
     public class LazyByteArrayChunkDescriptor : ChunkDescriptorBase 
     {
