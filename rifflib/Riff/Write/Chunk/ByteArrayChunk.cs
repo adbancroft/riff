@@ -1,4 +1,5 @@
 using System.IO;
+using Riff.Read.Chunk;
 
 namespace Riff.Write.Chunk
 {
@@ -7,6 +8,20 @@ namespace Riff.Write.Chunk
     /// </summary>
     public class ByteArrayChunk : ChunkBase
     {
+        public ByteArrayChunk()
+        {
+        }
+        public ByteArrayChunk(ByteArrayChunkDescriptor source)
+        {
+            Identifier = source.Identifier;
+            Data = source.Data;
+        }
+        public ByteArrayChunk(LazyByteArrayChunkDescriptor source)
+        {
+            Identifier = source.Identifier;
+            Data = source.ReadData();
+        }
+
         /// <summary>
         /// The chunk payload
         /// </summary>
