@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Riff.Write.Chunk.Lazy
+namespace Riff.Read.Chunk
 {
     public interface ISourceStreamProvider 
     {

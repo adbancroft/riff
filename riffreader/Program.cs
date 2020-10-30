@@ -10,7 +10,7 @@ namespace riffreader
         {
             using (var reader = new BinaryReader(new FileStream(path, FileMode.Open)))
             {
-                return Riff.Read.Reader.Read(reader, new Riff.Read.BasicChunkFactory());
+                return Riff.Read.Reader.Read(reader, new Riff.Read.BasicChunkFactory(new FileSourceStreamProvider(path)));
             }
         }
 
@@ -20,7 +20,7 @@ namespace riffreader
             //string path = @"C:\scratch\test.riff";
             var riffChunk = ReadFile(readPath);
 
-            var hdr = riffChunk.CreateWriteChunk(new FileSourceStreamProvider(readPath));
+            var hdr = riffChunk.CreateWriteChunk();
             // hdr.Identifier = riffChunk.Identifier;
             // hdr.ListType = riffChunk.ListType;
             // hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[43] });

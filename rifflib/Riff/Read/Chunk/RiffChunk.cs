@@ -19,7 +19,7 @@ namespace Riff.Read.Chunk
     /// </remarks>
     public class RiffChunkDescriptor : ListChunkDescriptor
     {
-        public RiffChunkDescriptor() : base("RIFF")
+        public RiffChunkDescriptor(IChunkFactory chunkFactory) : base("RIFF", chunkFactory)
         {
         }
     }

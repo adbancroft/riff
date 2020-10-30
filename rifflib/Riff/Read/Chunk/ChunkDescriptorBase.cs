@@ -26,6 +26,7 @@ namespace Riff.Read.Chunk
         {
             Requires.NotNullOrWhiteSpace(identifier, nameof(identifier));
             Requires.Argument(identifier.Length==4, nameof(identifier), "Invalid identifier: "+ identifier);
+            
 
             Identifier = identifier;
         }
@@ -41,11 +42,11 @@ namespace Riff.Read.Chunk
             Size = reader.ReadInt32();
             
             // Use Template Method pattern to write data
-            ReadData(reader, chunkFactory);
+            ReadData(reader);
         }
 
         // Derived classes to override to read the chunk data
-        protected abstract void ReadData(BinaryReader reader, IChunkFactory chunkFactory);
+        protected abstract void ReadData(BinaryReader reader);
 
         /// <summary>
         /// The offset of the start of this chunk from the beginning of the input stream 
@@ -69,7 +70,7 @@ namespace Riff.Read.Chunk
         /// <summary>
         /// Create the corresponding write chunk
         /// </summary>
-        public abstract Riff.Write.Chunk.ChunkBase CreateWriteChunk(ISourceStreamProvider provider);
+        public abstract Riff.Write.Chunk.ChunkBase CreateWriteChunk();
 
         #region IEnumerable
 

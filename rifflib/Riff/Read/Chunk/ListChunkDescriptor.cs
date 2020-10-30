@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using Riff.Write.Chunk.Lazy;
 
 namespace Riff.Read.Chunk
 {
@@ -10,24 +9,26 @@ namespace Riff.Read.Chunk
     {
         [JsonProperty("ChildChunks", Order = 1)]
         private IList<ChunkDescriptorBase> _subChunks;
+        private readonly IChunkFactory _chunkFactory;
 
         public String ListType { get; private set; }
 
-        public ListChunkDescriptor(string identifier)
+        public ListChunkDescriptor(string identifier, IChunkFactory chunkFactory)
             : base(identifier)
         {
+            _chunkFactory = chunkFactory;
         }
 
-        protected override void ReadData(BinaryReader reader, IChunkFactory chunkFactory)
+        protected override void ReadData(BinaryReader reader)
         {
             ListType = reader.ReadFixedString(RiffUtils.ListTypeSize);
-            _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.LengthSize);
+            _subChunks = ReadSubChunks(reader, _chunkFactory, Size-RiffUtils.LengthSize);
         }
 
         // <inheritdoc>
-        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk(ISourceStreamProvider provider)
+        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
         {
-            return new Riff.Write.Chunk.ListChunk(this, provider);
+            return new Riff.Write.Chunk.ListChunk(this);
         }
 
         #region IEnumerable

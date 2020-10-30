@@ -6,12 +6,10 @@ namespace Riff.Write.Chunk.Lazy
     public class LazyReadRawChunk : ChunkBase
     {
         private readonly RawChunkDescriptor _source;
-        private readonly ISourceStreamProvider _lazyReadProvider;
 
-        public LazyReadRawChunk(Riff.Read.Chunk.RawChunkDescriptor source, ISourceStreamProvider lazyReadProvider)
+        public LazyReadRawChunk(Riff.Read.Chunk.RawChunkDescriptor source)
         {
             _source = source;
-            _lazyReadProvider = lazyReadProvider;
         }
 
         public override int DataSize => _source.Size;
@@ -22,10 +20,7 @@ namespace Riff.Write.Chunk.Lazy
         
         protected override void WriteData(BinaryWriter writer)
         {
-            using (var sourceStream = _lazyReadProvider.Provide())
-            {
-                writer.WriteChunkData(_source.ReadData(sourceStream));
-            }
+            writer.WriteChunkData(_source.ReadData2());
         }
     }
 }

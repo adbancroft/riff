@@ -13,13 +13,13 @@ namespace Riff.Write.Chunk
         public ListChunk()
         {
         }
-        public ListChunk(Riff.Read.Chunk.ListChunkDescriptor source, ISourceStreamProvider lazyReadProvider)
+        public ListChunk(Riff.Read.Chunk.ListChunkDescriptor source)
         {
             Identifier = source.Identifier;
             ListType = source.ListType;
             foreach (var descriptor in source)
             {
-                _subChunks.Add(descriptor.CreateWriteChunk(lazyReadProvider));
+                _subChunks.Add(descriptor.CreateWriteChunk());
             }
         }
 
