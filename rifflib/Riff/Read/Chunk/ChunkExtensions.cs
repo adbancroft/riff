@@ -41,10 +41,10 @@ namespace Riff.Read.Chunk
         /// <summary>
         /// Handy extension method to find a list chunk with a specific list type 
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="fourCc"></param>
+        /// <param name="source">ENumerable to search</param>
+        /// <param name="listType">List type identifier</param>
         /// <returns></returns>
-        public static IEnumerable<ChunkDescriptorBase> WhereListType(this IEnumerable<ChunkDescriptorBase> source, string listType)
+        public static IEnumerable<ListChunkDescriptor> WhereListType(this IEnumerable<ChunkDescriptorBase> source, string listType)
         {
             return source.OfType<ListChunkDescriptor>().Where(cb => cb.ListType==listType);
         }
