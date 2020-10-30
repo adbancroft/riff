@@ -5,6 +5,7 @@ namespace Riff.Read
 {
     /// <summary>
     /// A <see cref="IChunkFactory"/> that works with the simplest chunk types.
+    /// Will create leaf chunks that lazily load their data. Useful for memory efficiency
     /// </summary>
     public class LazyBasicChunkFactory : IChunkFactory
     {
