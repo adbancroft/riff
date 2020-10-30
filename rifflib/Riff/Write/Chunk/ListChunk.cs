@@ -5,13 +5,24 @@ using System.Linq;
 
 namespace Riff.Write.Chunk
 {
+    /// <summary>
+    /// A writable chunk that stores child chunks
+    /// </summary>
     public class ListChunk : ChunkBase
     {
         private readonly IList<ChunkBase> _subChunks = new List<ChunkBase>();
 
+        /// <summary>
+        /// Default construction
+        /// </summary>
         public ListChunk()
         {
         }
+
+        /// <summary>
+        /// Construct from a list chunk descriptor  
+        /// </summary>
+        /// <param name="source">The list chunk descriptor</param>
         public ListChunk(Riff.Read.Chunk.ListChunkDescriptor source)
         {
             Identifier = source.Identifier;
@@ -22,12 +33,19 @@ namespace Riff.Write.Chunk
             }
         }
 
+        /// <summary>
+        /// The list type. E.g. "hdrl"
+        /// </summary>
+        /// <value></value>
         public String ListType { get; set; }
 
+        /// <inheritdoc>
         public override int DataSize => RiffUtils.ListTypeSize + _subChunks.Sum(s => s.TotalSize);
 
+        /// <inheritdoc>
         public override int TotalSize => RiffUtils.HeaderSize + DataSize;
 
+        // Write the chunk and it's child chunks
         protected override void WriteData(BinaryWriter writer)
         {
             writer.WriteFixedString(ListType, RiffUtils.ListTypeSize);

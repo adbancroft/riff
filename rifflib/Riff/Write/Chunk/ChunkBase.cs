@@ -7,7 +7,7 @@ using System.Linq;
 namespace Riff.Write.Chunk
 {
     /// <summary>
-    /// Base class for all chunks.
+    /// Base class for all writeable chunks.
     /// </summary>
     /// <remarks>
     /// Chunks can contain other chunks, in a tree structure.
@@ -26,13 +26,12 @@ namespace Riff.Write.Chunk
         public abstract int DataSize { get; }
 
         /// <summary>
-        /// Size of the chunk on disk.
-        /// Must include padding.
+        /// Size of the chunk from end to end, including padding.
         /// </summary>
         public abstract int TotalSize { get ; }
 
         /// <summary>
-        ///
+        /// Write this chunk.
         /// </summary>
         /// <param name="writer"></param>
         public void Write(BinaryWriter writer)
@@ -44,6 +43,7 @@ namespace Riff.Write.Chunk
             WriteData(writer);
         }
 
+        // Derived classes implement to write the data payload.
         protected abstract void WriteData(BinaryWriter writer);
         
         #region IList<>

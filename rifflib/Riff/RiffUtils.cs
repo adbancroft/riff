@@ -22,13 +22,23 @@ namespace Riff
         /// </summary>
         public const int HeaderSize = IdentifierSize + LengthSize;
         
+        /// <summary>
+        /// RIFF chunks are WORD aligned, so compute the necessary padding
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public static int CalculatePadding(int size)
         {
             const int wordSize = sizeof(short);
             return ((size + wordSize - 1) / wordSize * wordSize) - size; 
         }
 
-        public static int CalculateChunkDiskSize(int dataSize)
+        /// <summary>
+        /// Calculate total chunk size from start of the chunk identifier to 
+        /// the end of the payload, including padding.
+        /// </summary>
+        /// <param name="dataSize">Chunk data size</param>
+        public static int CalculateTotalChunkSIze(int dataSize)
         {
             return RiffUtils.HeaderSize + dataSize + RiffUtils.CalculatePadding(dataSize);
         }

@@ -7,11 +7,16 @@ namespace Riff.Write.Chunk
     /// </summary>
     public class StringChunk : ChunkBase
     {
+        /// <summary>
+        /// Chunk data
+        /// </summary>
         public string Data { get; set; }
 
+        /// <inheritdoc>
         public override int DataSize => Data?.Length+1 ?? 0;
 
-        public override int TotalSize => RiffUtils.CalculateChunkDiskSize(DataSize);
+        /// <inheritdoc>
+        public override int TotalSize => RiffUtils.CalculateTotalChunkSIze(DataSize);
 
         protected override void WriteData(BinaryWriter writer)
         {
