@@ -36,7 +36,7 @@ namespace Riff.Read.Chunk
         /// </summary>
         /// <param name="reader">The reader to read from</param>
         /// <param name="chunkFactory">Used by derived classes to create new child chunks</param>
-        public virtual void Read(BinaryReader reader, IChunkFactory chunkFactory)
+        public virtual void Read(BinaryReader reader)
         {
             ChunkOffset = reader.BaseStream.Position-RiffUtils.IdentifierSize;
             Size = reader.ReadInt32();

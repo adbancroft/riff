@@ -48,7 +48,7 @@ namespace Riff.Read.Chunk
             while (reader.BaseStream.Position<endOffset)
             {
                 ChunkDescriptorBase next = chunkFactory.Create(ChunkUtils.ReadIdentifier(reader));
-                next.Read(reader, chunkFactory);
+                next.Read(reader);
                 chunks.Add(next);
                 
             }
