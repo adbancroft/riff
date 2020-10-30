@@ -1,3 +1,4 @@
+using System.IO;
 using Validation;
 
 namespace Riff.Read.Chunk
@@ -19,7 +20,7 @@ namespace Riff.Read.Chunk
     /// </remarks>
     public class RiffChunkDescriptor : ListChunkDescriptor
     {
-        public RiffChunkDescriptor(IChunkFactory chunkFactory) : base("RIFF", chunkFactory)
+        public RiffChunkDescriptor(BinaryReader reader, IChunkFactory chunkFactory) : base("RIFF", reader, chunkFactory)
         {
         }
     }

@@ -20,7 +20,7 @@ namespace Riff.Write.Chunk.Lazy
         
         protected override void WriteData(BinaryWriter writer)
         {
-            writer.WriteChunkData(_source.ReadData2());
+            writer.WriteChunkData(_source.ReadData());
         }
     }
 }

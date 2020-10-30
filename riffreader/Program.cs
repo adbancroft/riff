@@ -10,7 +10,7 @@ namespace riffreader
         {
             using (var reader = new BinaryReader(new FileStream(path, FileMode.Open)))
             {
-                return Riff.Read.Reader.Read(reader, new Riff.Read.BasicChunkFactory(new FileSourceStreamProvider(path)));
+                return Riff.Read.Reader.Read(reader, new Riff.Read.BasicChunkFactory(reader, new FileSourceStreamProvider(path)));
             }
         }
 

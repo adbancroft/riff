@@ -18,9 +18,7 @@ namespace Riff.Read
         /// </remarks>
         public static ChunkDescriptorBase Read(BinaryReader reader, IChunkFactory chunkFactory)
         {
-            var topChunk = chunkFactory.Create(ChunkUtils.ReadIdentifier(reader));
-            topChunk.Read(reader);
-            return topChunk;
+            return chunkFactory.Create(reader.ReadFixedString(RiffUtils.IdentifierSize));
         }
     }
 }

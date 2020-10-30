@@ -1,3 +1,4 @@
+using System.IO;
 using Riff.Read.Chunk;
 
 namespace Riff.Read
@@ -7,10 +8,12 @@ namespace Riff.Read
     /// </summary>
     public class BasicChunkFactory : IChunkFactory
     {
+        private readonly BinaryReader _reader;
         private readonly ISourceStreamProvider _streamProvider;
 
-        public BasicChunkFactory(ISourceStreamProvider streamProvider)
+        public BasicChunkFactory(BinaryReader reader, ISourceStreamProvider streamProvider)
         {
+            _reader = reader;
             _streamProvider = streamProvider;
         }
 
@@ -19,9 +22,9 @@ namespace Riff.Read
         {
             switch (identifier.ToLowerInvariant())
             { 
-                case "riff": return new RiffChunkDescriptor(this);
-                case "list": return new ListChunkDescriptor(identifier, this);
-                default: return new RawChunkDescriptor(identifier, _streamProvider);
+                case "riff": return new RiffChunkDescriptor(_reader, this);
+                case "list": return new ListChunkDescriptor(identifier, _reader, this);
+                default: return new RawChunkDescriptor(identifier, _reader, _streamProvider);
             }
         }
     }

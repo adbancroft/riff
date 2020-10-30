@@ -9,20 +9,14 @@ namespace Riff.Read.Chunk
     {
         [JsonProperty("ChildChunks", Order = 1)]
         private IList<ChunkDescriptorBase> _subChunks;
-        private readonly IChunkFactory _chunkFactory;
 
         public String ListType { get; private set; }
 
-        public ListChunkDescriptor(string identifier, IChunkFactory chunkFactory)
-            : base(identifier)
-        {
-            _chunkFactory = chunkFactory;
-        }
-
-        protected override void ReadData(BinaryReader reader)
+        public ListChunkDescriptor(string identifier, BinaryReader reader, IChunkFactory chunkFactory)
+            : base(identifier, reader)
         {
             ListType = reader.ReadFixedString(RiffUtils.ListTypeSize);
-            _subChunks = ReadSubChunks(reader, _chunkFactory, Size-RiffUtils.LengthSize);
+            _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.LengthSize);
         }
 
         // <inheritdoc>
@@ -47,11 +41,9 @@ namespace Riff.Read.Chunk
             var chunks = new List<ChunkDescriptorBase>();
             while (reader.BaseStream.Position<endOffset)
             {
-                ChunkDescriptorBase next = chunkFactory.Create(ChunkUtils.ReadIdentifier(reader));
-                next.Read(reader);
-                chunks.Add(next);
-                
+                chunks.Add(chunkFactory.Create(ChunkUtils.ReadIdentifier(reader)));                
             }
+            
             return chunks;
         }
     }

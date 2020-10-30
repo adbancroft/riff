@@ -22,31 +22,15 @@ namespace Riff.Read.Chunk
         /// Construct a new chunk
         /// </summary>
         /// <param name="identifier">The 4 character chunk identifier</param>
-        protected ChunkDescriptorBase(string identifier)
+        protected ChunkDescriptorBase(string identifier, BinaryReader reader)
         {
             Requires.NotNullOrWhiteSpace(identifier, nameof(identifier));
             Requires.Argument(identifier.Length==4, nameof(identifier), "Invalid identifier: "+ identifier);
-            
 
             Identifier = identifier;
-        }
-
-        /// <summary>
-        /// Read this chunk's header fields from the reader
-        /// </summary>
-        /// <param name="reader">The reader to read from</param>
-        /// <param name="chunkFactory">Used by derived classes to create new child chunks</param>
-        public virtual void Read(BinaryReader reader)
-        {
             ChunkOffset = reader.BaseStream.Position-RiffUtils.IdentifierSize;
             Size = reader.ReadInt32();
-            
-            // Use Template Method pattern to write data
-            ReadData(reader);
         }
-
-        // Derived classes to override to read the chunk data
-        protected abstract void ReadData(BinaryReader reader);
 
         /// <summary>
         /// The offset of the start of this chunk from the beginning of the input stream 
