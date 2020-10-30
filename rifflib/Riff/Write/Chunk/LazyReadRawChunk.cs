@@ -1,7 +1,7 @@
 using System.IO;
 using Riff.Read.Chunk;
 
-namespace Riff.Write.Chunk.Lazy
+namespace Riff.Write.Chunk
 {
     public class LazyReadRawChunk : ChunkBase
     {

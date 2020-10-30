@@ -1,6 +1,7 @@
 ﻿using Riff.Read.Chunk;
 using System.IO;
-using Riff.Write.Chunk.Lazy;
+using System.Linq;
+using Riff.Write.Chunk;
 
 namespace riffreader
 {
@@ -21,6 +22,9 @@ namespace riffreader
             var riffChunk = ReadFile(readPath);
 
             var hdr = riffChunk.CreateWriteChunk();
+            var header = hdr.WhereListType("hdrl").First();
+            header.Add(new StringChunk { Identifier = "IDIT", Data="THIS IS A TEST"});
+            //header.Add(new RawChunk { Identifier="IDIT", Data = })
             // hdr.Identifier = riffChunk.Identifier;
             // hdr.ListType = riffChunk.ListType;
             // hdr.Add(new Riff.Write.Chunk.RawChunk { Identifier = "IDIT", Data = new byte[43] });
