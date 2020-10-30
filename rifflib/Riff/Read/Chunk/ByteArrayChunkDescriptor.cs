@@ -29,7 +29,7 @@ namespace Riff.Read.Chunk
         }
 
         /// <summary>
-        /// Read the chunk data payload. RIFF file chunk data can be very large, so it is lazy 
+        /// Read the chunk data payload. RIFF chunk data can be very large (up to 2Gb), so it is lazy 
         /// loaded rather than loaded in the constructor.
         /// </summary>
         public byte[] ReadData()
