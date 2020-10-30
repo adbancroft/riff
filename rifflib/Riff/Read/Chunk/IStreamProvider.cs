@@ -12,7 +12,8 @@ namespace Riff.Read.Chunk
     {
         /// <summary>
         /// Create the stream.
-        /// 1. Calls to <see cref="Provide"> should be stable. I.e. return a stream that wraps the same data source
+        /// 1. Calls to <see cref="Provide"> should be stable. 
+        ///     I.e. repeated calls should return a stream that always wraps the same data source
         /// 2. The caller will own and dispose of the Stream.
         /// </summary>
         Stream Provide();
