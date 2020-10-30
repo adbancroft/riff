@@ -17,7 +17,7 @@ namespace Riff.Read.Chunk
         /// THe list type FourCC tag 
         /// </summary>
         /// <value></value>
-        public String ListType { get; private set; }
+        public String ListType { get; }
 
         /// <summary>
         /// Construct by reading from a BinaryReader

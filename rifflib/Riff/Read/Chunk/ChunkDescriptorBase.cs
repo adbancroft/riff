@@ -35,13 +35,13 @@ namespace Riff.Read.Chunk
         /// <summary>
         /// The offset of the start of this chunk from the beginning of the input stream 
         /// </summary>
-        public long ChunkOffset { get; private set; }
+        public long ChunkOffset { get; }
 
         /// <summary>
         /// The 4 character chunk identifier. E.g. LIST
         /// </summary>
         /// <value></value>
-        public String Identifier { get; private set; }
+        public String Identifier { get; }
 
         /// <summary>
         /// Size of the chunk data in bytes.
@@ -49,7 +49,7 @@ namespace Riff.Read.Chunk
         /// <remarks>
         /// Size gives the size of the valid data in the chunk; it does not include the padding, the size of the identifier, or the size of the size field itself.
         /// </remarks>
-        public int Size { get; private set; }
+        public int Size { get; }
 
         /// <summary>
         /// Create the corresponding write chunk
