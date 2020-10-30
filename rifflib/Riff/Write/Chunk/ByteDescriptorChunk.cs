@@ -8,13 +8,13 @@ namespace Riff.Write.Chunk
     /// </summary>
     public class ByteDescriptorChunk : ChunkBase
     {
-        private readonly RawChunkDescriptor _source;
+        private readonly ByteArrayChunkDescriptor _source;
 
         /// <summary>
         /// Construct from a byte chunk descriptor 
         /// </summary>
         /// <param name="source">The byte chunk descriptor</param>
-        public ByteDescriptorChunk(Riff.Read.Chunk.RawChunkDescriptor source)
+        public ByteDescriptorChunk(Riff.Read.Chunk.ByteArrayChunkDescriptor source)
         {
             _source = source;
         }

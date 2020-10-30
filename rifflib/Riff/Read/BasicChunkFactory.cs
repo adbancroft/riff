@@ -24,7 +24,7 @@ namespace Riff.Read
             { 
                 case "riff": return new RiffChunkDescriptor(_reader, this);
                 case "list": return new ListChunkDescriptor(identifier, _reader, this);
-                default: return new RawChunkDescriptor(identifier, _reader, _streamProvider);
+                default: return new ByteArrayChunkDescriptor(identifier, _reader, _streamProvider);
             }
         }
     }
