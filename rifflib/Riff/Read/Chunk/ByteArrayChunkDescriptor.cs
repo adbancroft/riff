@@ -32,7 +32,6 @@ namespace Riff.Read.Chunk
         /// Read the chunk data payload. RIFF file chunk data can be very large, so it is lazy 
         /// loaded rather than loaded in the constructor.
         /// </summary>
-        /// <returns></returns>
         public byte[] ReadData()
         {
             var source = _streamProvider.Provide();
