@@ -6,12 +6,12 @@ namespace Riff.Read
     /// <summary>
     /// A <see cref="IChunkFactory"/> that works with the simplest chunk types.
     /// </summary>
-    public class BasicChunkFactory : IChunkFactory
+    public class LazyBasicChunkFactory : IChunkFactory
     {
         private readonly BinaryReader _reader;
         private readonly IStreamProvider _streamProvider;
 
-        public BasicChunkFactory(BinaryReader reader, IStreamProvider streamProvider)
+        public LazyBasicChunkFactory(BinaryReader reader, IStreamProvider streamProvider)
         {
             _reader = reader;
             _streamProvider = streamProvider;
@@ -24,7 +24,7 @@ namespace Riff.Read
             { 
                 case "riff": return new RiffChunkDescriptor(_reader, this);
                 case "list": return new ListChunkDescriptor(identifier, _reader, this);
-                default: return new ByteArrayChunkDescriptor(identifier, _reader, _streamProvider);
+                default: return new LazyByteArrayChunkDescriptor(identifier, _reader, _streamProvider);
             }
         }
     }

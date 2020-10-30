@@ -6,15 +6,15 @@ namespace Riff.Write.Chunk
     /// <summary>
     /// A writeable chunk that mirrors a byte chunk descriptor
     /// </summary>
-    public class ByteDescriptorChunk : ChunkBase
+    public class LazyByteDescriptorChunk : ChunkBase
     {
-        private readonly ByteArrayChunkDescriptor _source;
+        private readonly LazyByteArrayChunkDescriptor _source;
 
         /// <summary>
         /// Construct from a byte chunk descriptor 
         /// </summary>
         /// <param name="source">The byte chunk descriptor</param>
-        public ByteDescriptorChunk(Riff.Read.Chunk.ByteArrayChunkDescriptor source)
+        public LazyByteDescriptorChunk(Riff.Read.Chunk.LazyByteArrayChunkDescriptor source)
         {
             _source = source;
         }

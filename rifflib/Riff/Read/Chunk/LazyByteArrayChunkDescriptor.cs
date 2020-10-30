@@ -7,7 +7,7 @@ namespace Riff.Read.Chunk
     /// <summary>
     /// A chunk that has a byte[] payload.
     /// </summary>
-    public class ByteArrayChunkDescriptor : ChunkDescriptorBase 
+    public class LazyByteArrayChunkDescriptor : ChunkDescriptorBase 
     {
         private readonly IStreamProvider _streamProvider;
 
@@ -17,7 +17,7 @@ namespace Riff.Read.Chunk
         /// <param name="identifier">The chunk identifer</param>
         /// <param name="reader">The source to read from</param>
         /// <param name="streamProvider">The stream provider used to lazy load the data payload</param>
-        public ByteArrayChunkDescriptor(string identifier, BinaryReader reader, IStreamProvider streamProvider)
+        public LazyByteArrayChunkDescriptor(string identifier, BinaryReader reader, IStreamProvider streamProvider)
             : base(identifier, reader)
         {
             Requires.NotNull(streamProvider, nameof(streamProvider));
@@ -45,7 +45,7 @@ namespace Riff.Read.Chunk
         // <inheritdoc>
         public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
         {
-            return new ByteDescriptorChunk(this);
+            return new LazyByteDescriptorChunk(this);
         }
     }
 }
