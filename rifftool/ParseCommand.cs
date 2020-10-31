@@ -28,7 +28,7 @@ namespace rifftool
         {
             using (var reader = new BinaryReader(new FileStream(input.FullName, FileMode.Open)))
             {
-                Console.Write(ToJson(Reader.Read(reader, new Riff.Read.BasicChunkFactory(reader))));
+                Console.Write(ToJson(Reader.Read(reader, new Riff.Read.LazyBasicChunkFactory(reader, new FileStreamProvider(input.FullName)))));
             }
             return 0;
         }
