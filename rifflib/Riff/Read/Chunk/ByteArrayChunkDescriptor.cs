@@ -1,6 +1,6 @@
 using System.IO;
 using Riff.Write.Chunk;
-using Validation;
+using Newtonsoft.Json;
 
 namespace Riff.Read.Chunk
 {
@@ -9,6 +9,7 @@ namespace Riff.Read.Chunk
     /// </summary>
     public class ByteArrayChunkDescriptor : ChunkDescriptorBase 
     {
+        [JsonIgnore]
         public byte[] Data { get; }
 
         /// <summary>
