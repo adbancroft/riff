@@ -13,7 +13,7 @@ namespace Riff.Read.Chunk
         /// </summary>
         /// <param name="source">The sequence to search</param>
         /// <param name="listType">The list type identifier</param>
-        /// <returns>An <see cref="IEnumerable{ListChunkDescriptor}"> that contains elements from the input sequence that satisfy the condition.</returns>
+        /// <returns>An <see cref="IEnumerable{ListChunkDescriptor}"/> that contains elements from the input sequence that satisfy the condition.</returns>
         public static IEnumerable<ListChunkDescriptor> WhereListType(this IEnumerable<ChunkDescriptorBase> source, string listType)
         {
             return source.OfType<ListChunkDescriptor>().Where(cb => cb.ListType==listType);
