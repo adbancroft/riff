@@ -53,6 +53,12 @@ namespace Riff.Read.Chunk
         public int Size { get; }
 
         /// <summary>
+        /// Get the chunk data 
+        /// </summary>
+        [JsonIgnore]
+        public abstract byte[] Data { get;}
+
+        /// <summary>
         /// Create the corresponding write chunk
         /// </summary>
         public abstract Riff.Write.Chunk.ChunkBase CreateWriteChunk();

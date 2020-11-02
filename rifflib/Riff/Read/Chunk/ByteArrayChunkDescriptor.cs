@@ -10,7 +10,8 @@ namespace Riff.Read.Chunk
     public class ByteArrayChunkDescriptor : ChunkDescriptorBase 
     {
         [JsonIgnore]
-        public byte[] Data { get; }
+        /// <inheritdoc>
+        public override byte[] Data { get; }
 
         /// <summary>
         /// Construct by reading from a BinaryReader

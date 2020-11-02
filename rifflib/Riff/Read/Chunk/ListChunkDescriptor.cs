@@ -20,6 +20,9 @@ namespace Riff.Read.Chunk
         /// <value></value>
         public String ListType { get; }
 
+        /// <inheritdoc>
+        public override byte[] Data { get { throw new NotImplementedException(); } }
+
         /// <summary>
         /// Construct by reading from a BinaryReader
         /// </summary>

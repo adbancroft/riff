@@ -11,15 +11,10 @@ namespace Riff.Write.Chunk
         public ByteArrayChunk()
         {
         }
-        public ByteArrayChunk(ByteArrayChunkDescriptor source)
+        public ByteArrayChunk(ChunkDescriptorBase source)
         {
             Identifier = source.Identifier;
             Data = source.Data;
-        }
-        public ByteArrayChunk(LazyByteArrayChunkDescriptor source)
-        {
-            Identifier = source.Identifier;
-            Data = source.ReadData();
         }
 
         /// <summary>

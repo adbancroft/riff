@@ -32,20 +32,23 @@ namespace Riff.Read.Chunk
         /// Read the chunk data payload. RIFF chunk data can be very large (up to 2Gb), so it is lazy 
         /// loaded rather than loaded in the constructor.
         /// </summary>
-        public byte[] ReadData()
+        public override byte[] Data
         {
-            var source = _streamProvider.Provide();
-            source.Seek(ChunkOffset + RiffUtils.HeaderSize, SeekOrigin.Begin);
-            using (var reader = new BinaryReader(source))
+            get 
             {
-                return reader.ReadBytes(Size);
+                var source = _streamProvider.Provide();
+                source.Seek(ChunkOffset + RiffUtils.HeaderSize, SeekOrigin.Begin);
+                using (var reader = new BinaryReader(source))
+                {
+                    return reader.ReadBytes(Size);
+                }
             }
         }
 
         // <inheritdoc>
         public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
         {
-            return new LazyByteDescriptorChunk(this);
+            return new ByteDescriptorChunk(this);
         }
     }
 }
