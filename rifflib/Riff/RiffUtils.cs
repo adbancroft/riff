@@ -1,6 +1,6 @@
 namespace Riff
 {
-    public static class RiffUtils
+    static class RiffUtils
     {
         /// <summary>
         /// Size of the identifier field in bytes.
