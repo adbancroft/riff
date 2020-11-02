@@ -19,9 +19,10 @@ namespace Riff.Read.Chunk
     public abstract class ChunkDescriptorBase : IEnumerable<ChunkDescriptorBase>
     {
         /// <summary>
-        /// Construct a new chunk
+        /// Construct by reading from a BinaryReader
         /// </summary>
-        /// <param name="identifier">The 4 character chunk identifier</param>
+        /// <param name="identifier">The chunk identifer</param>
+        /// <param name="reader">The source to read from</param>
         protected ChunkDescriptorBase(string identifier, BinaryReader reader)
         {
             Requires.NotNullOrWhiteSpace(identifier, nameof(identifier));
@@ -65,11 +66,13 @@ namespace Riff.Read.Chunk
 
         #region IEnumerable
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
+        /// <inheritdoc/>
         virtual public IEnumerator<ChunkDescriptorBase> GetEnumerator()
         {
             return Enumerable.Empty<ChunkDescriptorBase>().GetEnumerator();

@@ -45,7 +45,7 @@ namespace Riff.Read.Chunk
             }
         }
 
-        // <inheritdoc>
+        /// <inheritdoc/>
         public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
         {
             return new ByteDescriptorChunk(this);

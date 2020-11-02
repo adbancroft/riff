@@ -9,8 +9,8 @@ namespace Riff.Read.Chunk
     /// </summary>
     public class ByteArrayChunkDescriptor : ChunkDescriptorBase 
     {
+        /// <inheritdoc/>
         [JsonIgnore]
-        /// <inheritdoc>
         public override byte[] Data { get; }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Riff.Read.Chunk
             reader.BaseStream.Seek(RiffUtils.CalculatePadding(Size), SeekOrigin.Current);
         }
    
-        // <inheritdoc>
+        /// <inheritdoc/>
         public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
         {
             return new ByteDescriptorChunk(this);

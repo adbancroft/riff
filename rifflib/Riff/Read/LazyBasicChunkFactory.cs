@@ -12,6 +12,8 @@ namespace Riff.Read
         private readonly BinaryReader _reader;
         private readonly IStreamProvider _streamProvider;
 
+        /// <param name="reader">The source to read metadata from</param>
+        /// <param name="streamProvider">The source to lazily read data from</param>
         public LazyBasicChunkFactory(BinaryReader reader, IStreamProvider streamProvider)
         {
             _reader = reader;

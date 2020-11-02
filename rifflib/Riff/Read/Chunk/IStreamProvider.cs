@@ -12,7 +12,7 @@ namespace Riff.Read.Chunk
     {
         /// <summary>
         /// Create the stream.
-        /// 1. Calls to <see cref="Provide"> should be stable. 
+        /// 1. Calls to <see cref="Provide"/> should be stable. 
         ///     I.e. repeated calls should return a stream that always wraps the same data source
         /// 2. The caller will own and dispose of the Stream.
         /// </summary>
@@ -26,12 +26,13 @@ namespace Riff.Read.Chunk
     {
         private readonly string _path;
 
+        /// <param name="path">The path to provide a stream around</param>
         public FileStreamProvider(string path)
         {
             _path = path;
         }
 
-        /// <inheritdoc>
+        /// <inheritdoc/>
         public Stream Provide()
         {
             return new FileStream(_path, FileMode.Open);

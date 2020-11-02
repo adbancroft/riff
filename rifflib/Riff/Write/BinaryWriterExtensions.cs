@@ -2,7 +2,10 @@ using System.IO;
 
 namespace Riff.Write.Chunk
 {
-    public static class BinaryWriterExtensions
+    /// <summary>
+    /// A set of extension methods for <cref see="BinaryWriter"/>
+    /// </summary>
+    static class BinaryWriterExtensions
     {
         /// <summary>
         /// Write a fixed length ASCII string to the binary writer.

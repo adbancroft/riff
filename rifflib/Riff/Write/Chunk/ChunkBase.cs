@@ -21,7 +21,7 @@ namespace Riff.Write.Chunk
 
         /// <summary>
         /// Size of the chunk data. 
-        /// Does not include the size of the <cref="Identifier"> or this field
+        /// Does not include the size of the <cref see="Identifier"/> or this field
         /// </summary>
         public abstract int DataSize { get; }
 
@@ -43,42 +43,67 @@ namespace Riff.Write.Chunk
             WriteData(writer);
         }
 
-        // Derived classes implement to write the data payload.
+        /// <summary>
+        /// Derived classes override to write the data payload.
+        /// </summary>
+        /// <param name="writer">Write the data to this</param>
         protected abstract void WriteData(BinaryWriter writer);
         
         #region IList<>
 
+        /// <inheritdoc/>
         public virtual ChunkBase this[int index] 
         { 
             get { throw new NotImplementedException(); } 
             set { throw new NotImplementedException(); } 
         }
 
+        /// <inheritdoc/>
         public virtual int IndexOf(ChunkBase item) { throw new NotImplementedException(); } 
+
+        /// <inheritdoc/>
         public virtual void Insert(int index, ChunkBase item) { throw new NotImplementedException(); } 
+
+        /// <inheritdoc/>
         public virtual void RemoveAt(int index) { throw new NotImplementedException(); } 
         
         #endregion
 
         #region ICollection<>
+
+        /// <inheritdoc/>
         public virtual int Count { get { return 0; } }
+
+        /// <inheritdoc/>
         public virtual bool IsReadOnly { get { return true; } }
 
+
+        /// <inheritdoc/>
         public virtual void Add(ChunkBase item)  { throw new NotImplementedException(); } 
+
+        /// <inheritdoc/>
         public virtual void Clear()  { throw new NotImplementedException(); } 
+
+        /// <inheritdoc/>
         public virtual bool Contains(ChunkBase item) { return false; }
+
+        /// <inheritdoc/>
         public virtual void CopyTo(ChunkBase[] array, int arrayIndex)  { throw new NotImplementedException(); } 
+
+        /// <inheritdoc/>
         public virtual bool Remove(ChunkBase item)  { throw new NotImplementedException(); } 
 
         #endregion
 
         #region IEnumerable
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
+        /// <inheritdoc/>
         virtual public IEnumerator<ChunkBase> GetEnumerator()
         {
             return Enumerable.Empty<ChunkBase>().GetEnumerator();

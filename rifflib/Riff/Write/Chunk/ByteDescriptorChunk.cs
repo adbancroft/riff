@@ -24,15 +24,16 @@ namespace Riff.Write.Chunk
         /// </summary>
         public byte[] Data => _source.Data;
 
-        /// <inheritdoc>
+        /// <inheritdoc/>
         public override int DataSize => _source.Size;
 
-        /// <inheritdoc>
+        /// <inheritdoc/>
         public override string Identifier => _source.Identifier;
 
-        /// <inheritdoc>
+        /// <inheritdoc/>
         public override int TotalSize  => RiffUtils.CalculateTotalChunkSIze(DataSize);
 
+        /// <inheritdoc/>
         // Just copy the data from the source chunk to the writer        
         protected override void WriteData(BinaryWriter writer)
         {

@@ -20,7 +20,7 @@ namespace Riff.Read.Chunk
         /// <value></value>
         public String ListType { get; }
 
-        /// <inheritdoc>
+        /// <inheritdoc/>
         public override byte[] Data { get { throw new NotImplementedException(); } }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Riff.Read.Chunk
             _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.LengthSize);
         }
 
-        // <inheritdoc>
+        /// <inheritdoc/>
         public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
         {
             return new Riff.Write.Chunk.ListChunk(this);
@@ -49,6 +49,7 @@ namespace Riff.Read.Chunk
 
         #region IEnumerable
 
+        /// <inheritdoc/>
         public override IEnumerator<ChunkDescriptorBase> GetEnumerator()
         {
             return _subChunks.GetEnumerator();

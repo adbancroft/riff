@@ -20,6 +20,11 @@ namespace Riff.Read.Chunk
     /// </remarks>
     public class RiffChunkDescriptor : ListChunkDescriptor
     {
+        /// <summary>
+        /// Construct by reading from a BinaryReader
+        /// </summary>
+        /// <param name="reader">The source to read from</param>
+        /// <param name="chunkFactory">Used to create child chunks</param>
         public RiffChunkDescriptor(BinaryReader reader, IChunkFactory chunkFactory) : base("RIFF", reader, chunkFactory)
         {
         }

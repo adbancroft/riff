@@ -12,12 +12,13 @@ namespace Riff.Write.Chunk
         /// </summary>
         public string Data { get; set; }
 
-        /// <inheritdoc>
+        /// <inheritdoc/>
         public override int DataSize => Data?.Length+1 ?? 0;
 
-        /// <inheritdoc>
+        /// <inheritdoc/>
         public override int TotalSize => RiffUtils.CalculateTotalChunkSIze(DataSize);
 
+        /// <inheritdoc/>
         protected override void WriteData(BinaryWriter writer)
         {
             writer.WriteChunkData(System.Text.Encoding.ASCII.GetBytes(Data+"\0"));
