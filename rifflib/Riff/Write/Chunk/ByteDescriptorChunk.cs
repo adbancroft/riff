@@ -35,7 +35,7 @@ namespace Riff.Write.Chunk
 
         /// <inheritdoc/>
         // Just copy the data from the source chunk to the writer        
-        protected override void WriteData(BinaryWriter writer)
+        public override void WriteData(BinaryWriter writer)
         {
             writer.WriteChunkData(Data);
         }

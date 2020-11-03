@@ -47,7 +47,7 @@ namespace Riff.Write.Chunk
         /// Derived classes override to write the data payload.
         /// </summary>
         /// <param name="writer">Write the data to this</param>
-        protected abstract void WriteData(BinaryWriter writer);
+        public abstract void WriteData(BinaryWriter writer);
         
         #region IList<>
 

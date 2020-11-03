@@ -46,7 +46,7 @@ namespace Riff.Write.Chunk
         public override int TotalSize => RiffUtils.HeaderSize + DataSize;
 
         /// <inheritdoc/>
-        protected override void WriteData(BinaryWriter writer)
+        public override void WriteData(BinaryWriter writer)
         {
             // Write the chunk and it's child chunks
             writer.WriteFixedString(ListType, RiffUtils.ListTypeSize);

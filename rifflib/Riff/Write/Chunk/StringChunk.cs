@@ -19,7 +19,7 @@ namespace Riff.Write.Chunk
         public override int TotalSize => RiffUtils.CalculateTotalChunkSIze(DataSize);
 
         /// <inheritdoc/>
-        protected override void WriteData(BinaryWriter writer)
+        public override void WriteData(BinaryWriter writer)
         {
             writer.WriteChunkData(System.Text.Encoding.ASCII.GetBytes(Data+"\0"));
         }        
