@@ -26,10 +26,7 @@ namespace rifftool
         
         private static int Parse(FileInfo input)
         {
-            using (var reader = new BinaryReader(new FileStream(input.FullName, FileMode.Open)))
-            {
-                Console.Write(ToJson(Reader.Read(reader, new Riff.Read.LazyBasicChunkFactory(reader, new FileStreamProvider(input.FullName)))));
-            }
+            Console.Write(ToJson(input.ReadRiff()));
             return 0;
         }
 
