@@ -22,6 +22,17 @@ namespace Riff.Write.Chunk
         }
 
         /// <summary>
+        /// Find a chunks parent
+        /// </summary>
+        /// <param name="root">Root chunk to search from</param>
+        /// <param name="path">Path to the child chunk.</param>
+        /// <returns></returns>
+        public static ChunkBase FindParent(this ChunkBase root, string path)
+        {
+            return FindChunk(root, Regex.Matches(path, pathRegEx, RegexOptions.IgnoreCase).OfType<Match>().SkipLast(1));
+        }
+
+        /// <summary>
         /// Search the chunk tree for a specific child chunk.
         /// </summary>
         /// <param name="parent">Root to start searching from</param>
@@ -39,11 +50,15 @@ namespace Riff.Write.Chunk
         /// <returns></returns>
         public static ChunkBase FindChunk(this ChunkBase parent, string path)
         {
-            foreach (Match part in Regex.Matches(path, pathRegEx, RegexOptions.IgnoreCase))
+            return FindChunk(parent, Regex.Matches(path, pathRegEx, RegexOptions.IgnoreCase));
+        }
+
+        private static ChunkBase FindChunk(ChunkBase parent, IEnumerable<Match> path)
+        {
+            foreach (Match part in path)
             {
                 parent = FindDirectChild(parent, part);
             }
-
             return parent;
         }
 
