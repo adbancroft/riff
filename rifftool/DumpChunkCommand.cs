@@ -11,10 +11,6 @@ namespace rifftool
         public DumpChunkCommand()
             : base("dumpchunk", "Write chunk data to a file")
         {
-            AddOption(new Option<FileInfo>(new [] {"--input", "-i"}, "The RIFF file to read") 
-                { 
-                    IsRequired = true 
-                }.ExistingOnly());
             AddOption(new Option<FileInfo>(new [] {"--output", "-o"}, "The path to wrie the updated RIFF file") 
                 { 
                     IsRequired = true 

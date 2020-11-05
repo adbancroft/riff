@@ -13,13 +13,6 @@ namespace rifftool
         public ParseCommand()
             : base("parse", "Read the RIFF file structure")
         {
-            var inputOption = 
-                new Option<FileInfo>(new [] {"--input", "-i"}, "The RIFF file to read") 
-                { 
-                    IsRequired = true 
-                }.ExistingOnly();
-            AddOption(inputOption);
-
             Handler = CommandHandler.Create<FileInfo>(Parse);
         }
 
