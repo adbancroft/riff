@@ -2,14 +2,7 @@ using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
-using Riff.Read;
-using Riff.Read.Chunk;
-using Riff.Write;
 using Riff.Write.Chunk;
-using System.Linq;
-using Validation;
-using System.Collections.Generic;
-using System.CommandLine.Parsing;
 
 namespace rifftool
 {
@@ -34,19 +27,22 @@ namespace rifftool
                 { 
                     IsRequired = true 
                 });
-            AddOption(new Option<string>("--data", "The data of the new chunk. Can be a string or a file path. In the case of a file path, the file contents are written to the chunk.") 
+            this.AddMutuallyExclusiveRequired(
+                new Option<string>("--data", "The data for the new chunk.") 
                 { 
-                    IsRequired = true 
-                });                
+                },
+                new Option<FileInfo>("--filedata", "Path to a file containing The data for the new chunk.") 
+                { 
+                }.ExistingOnly());
 
-            Handler = CommandHandler.Create<FileInfo, FileInfo, string, string, string>(Add);
+            Handler = CommandHandler.Create<FileInfo, FileInfo, string, string, string, FileInfo>(Add);
         }
 
-        private static int Add(FileInfo input, FileInfo output, string parent, string name, string data)
+        private static int Add(FileInfo input, FileInfo output, string parent, string name, string data, FileInfo filedata)
         {
             try {
                 var writeChunks = input.ReadRiff().CreateWriteChunk();
-                var newChunk = new StringChunk { Identifier = name, Data = data };
+                var newChunk = new ByteArrayChunk { Identifier = name, Data = CreateChunkData(data, filedata) };
                 writeChunks.FindChunk(parent).Add(newChunk);
 
                 using (var writer = new BinaryWriter(new FileStream(output.FullName, FileMode.OpenOrCreate)))
@@ -61,6 +57,21 @@ namespace rifftool
                 Console.Error.Write(e.Message);
                 return 1;
             }
+        }
+
+        private static byte[] CreateChunkData(string data, FileInfo filedata)
+        {
+            if (filedata!=null)
+            {
+                using (var sourceStream = new FileStream(filedata.FullName, FileMode.Open))
+                using (var ms = new MemoryStream())
+                {
+                    sourceStream.CopyTo(ms);
+                    return ms.ToArray();
+                }
+            }
+            
+            return System.Text.Encoding.ASCII.GetBytes(data);
         }
     }
 }
