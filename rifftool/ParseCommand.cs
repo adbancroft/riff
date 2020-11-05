@@ -2,7 +2,6 @@ using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
-using Riff.Read;
 using Riff.Read.Chunk;
 using Newtonsoft.Json;
 
