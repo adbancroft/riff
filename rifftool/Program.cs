@@ -15,7 +15,8 @@ namespace rifftool
             {
                 new ParseCommand(),
                 new AddChunkCommand(),
-                new DumpChunkCommand()
+                new DumpChunkCommand(),
+                new DeleteChunkCommand()
             };
             rootCommand.AddGlobalOption(new Option<FileInfo>(new [] {"--input", "-i"}, "The RIFF file to read") 
                 { 
