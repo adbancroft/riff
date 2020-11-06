@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace rifftool
 {
-    class ParseCommand : Command
+    internal class ParseCommand : Command
     {
         public ParseCommand()
             : base("parse", "Read the RIFF file structure")
@@ -15,7 +15,6 @@ namespace rifftool
             Handler = CommandHandler.Create<FileInfo>(Parse);
         }
 
-        
         private static int Parse(FileInfo input)
         {
             Console.Write(ToJson(input.ReadRiff()));

@@ -9,7 +9,7 @@ namespace Riff.Read.Chunk
     public static class ChunkExtensions
     {
         /// <summary>
-        /// Handy extension method to find a list chunk with a specific list type 
+        /// Handy extension method to find a list chunk with a specific list type
         /// </summary>
         /// <param name="source">The sequence to search</param>
         /// <param name="listType">The list type identifier</param>

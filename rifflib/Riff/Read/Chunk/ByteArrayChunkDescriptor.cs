@@ -7,7 +7,7 @@ namespace Riff.Read.Chunk
     /// <summary>
     /// A chunk that has a byte[] payload.
     /// </summary>
-    public class ByteArrayChunkDescriptor : ChunkDescriptorBase 
+    public class ByteArrayChunkDescriptor : ChunkDescriptorBase
     {
         /// <inheritdoc/>
         [JsonIgnore]
@@ -24,7 +24,7 @@ namespace Riff.Read.Chunk
             Data = reader.ReadBytes(Size);
             reader.BaseStream.Seek(RiffUtils.CalculatePadding(Size), SeekOrigin.Current);
         }
-   
+
         /// <inheritdoc/>
         public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
         {

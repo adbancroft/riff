@@ -6,10 +6,9 @@ using System.IO;
 
 namespace rifftool
 {
-
-    class Program
+    internal static class Program
     {
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
             var rootCommand = new RootCommand("RIFF file chunk browsing and editing")
             {
@@ -18,16 +17,11 @@ namespace rifftool
                 new DumpChunkCommand(),
                 new DeleteChunkCommand()
             };
-            rootCommand.AddGlobalOption(new Option<FileInfo>(new [] {"--input", "-i"}, "The RIFF file to read") 
-                { 
-                    IsRequired = true 
+            rootCommand.AddGlobalOption(new Option<FileInfo>(new [] {"--input", "-i"}, "The RIFF file to read")
+                {
+                    IsRequired = true
                 }.ExistingOnly());
             return rootCommand.Invoke(args);
-        }
-
-        private static void ExceptionHandler(Exception exception, InvocationContext context)
-        {
-            Console.Error.WriteLine(exception.Message);
         }
     }
 }

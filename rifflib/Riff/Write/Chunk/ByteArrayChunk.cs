@@ -40,6 +40,6 @@ namespace Riff.Write.Chunk
         public override void WriteData(BinaryWriter writer)
         {
             writer.WriteChunkData(Data);
-        }        
+        }
     }
 }

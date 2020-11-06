@@ -5,23 +5,23 @@ using Riff.Write.Chunk;
 
 namespace rifftool
 {
-    class DeleteChunkCommand : Command
+    internal class DeleteChunkCommand : Command
     {
         public DeleteChunkCommand()
             : base("deletechunk", "Delete a chunk")
         {
-            AddOption(new Option<FileInfo>(new [] {"--output", "-o"}, "The path to write the updated RIFF file") 
-                { 
-                    IsRequired = true 
+            AddOption(new Option<FileInfo>(new [] {"--output", "-o"}, "The path to write the updated RIFF file")
+                {
+                    IsRequired = true
                 });
-            AddOption(new Option<string>("--deletepath", "Slash delimited path of chunk to delete. E.g. LIST-hdrl-1\\INFO") 
-                { 
+            AddOption(new Option<string>("--deletepath", "Slash delimited path of chunk to delete. E.g. LIST-hdrl-1\\INFO")
+                {
                     IsRequired = true
                 });
 
             Handler = CommandHandler.Create<FileInfo, FileInfo, string>(Delete);
         }
-        
+
         private static int Delete(FileInfo input, FileInfo output, string deletePath)
         {
                 var rootChunk = input.ReadRiff().CreateWriteChunk();

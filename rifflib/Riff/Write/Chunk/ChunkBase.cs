@@ -20,7 +20,7 @@ namespace Riff.Write.Chunk
         public virtual String Identifier { get; set; }
 
         /// <summary>
-        /// Size of the chunk data. 
+        /// Size of the chunk data.
         /// Does not include the size of the <cref see="Identifier"/> or this field
         /// </summary>
         public abstract int DataSize { get; }
@@ -48,25 +48,25 @@ namespace Riff.Write.Chunk
         /// </summary>
         /// <param name="writer">Write the data to this</param>
         public abstract void WriteData(BinaryWriter writer);
-        
+
         #region IList<>
 
         /// <inheritdoc/>
-        public virtual ChunkBase this[int index] 
-        { 
-            get { throw new NotImplementedException(); } 
-            set { throw new NotImplementedException(); } 
+        public virtual ChunkBase this[int index]
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
         }
 
         /// <inheritdoc/>
-        public virtual int IndexOf(ChunkBase item) { throw new NotImplementedException(); } 
+        public virtual int IndexOf(ChunkBase item) { throw new NotImplementedException(); }
 
         /// <inheritdoc/>
-        public virtual void Insert(int index, ChunkBase item) { throw new NotImplementedException(); } 
+        public virtual void Insert(int index, ChunkBase item) { throw new NotImplementedException(); }
 
         /// <inheritdoc/>
-        public virtual void RemoveAt(int index) { throw new NotImplementedException(); } 
-        
+        public virtual void RemoveAt(int index) { throw new NotImplementedException(); }
+
         #endregion
 
         #region ICollection<>
@@ -77,21 +77,20 @@ namespace Riff.Write.Chunk
         /// <inheritdoc/>
         public virtual bool IsReadOnly { get { return true; } }
 
+        /// <inheritdoc/>
+        public virtual void Add(ChunkBase item)  { throw new NotImplementedException(); }
 
         /// <inheritdoc/>
-        public virtual void Add(ChunkBase item)  { throw new NotImplementedException(); } 
-
-        /// <inheritdoc/>
-        public virtual void Clear()  { throw new NotImplementedException(); } 
+        public virtual void Clear()  { throw new NotImplementedException(); }
 
         /// <inheritdoc/>
         public virtual bool Contains(ChunkBase item) { return false; }
 
         /// <inheritdoc/>
-        public virtual void CopyTo(ChunkBase[] array, int arrayIndex)  { throw new NotImplementedException(); } 
+        public virtual void CopyTo(ChunkBase[] array, int arrayIndex)  { throw new NotImplementedException(); }
 
         /// <inheritdoc/>
-        public virtual bool Remove(ChunkBase item)  { throw new NotImplementedException(); } 
+        public virtual bool Remove(ChunkBase item)  { throw new NotImplementedException(); }
 
         #endregion
 

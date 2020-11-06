@@ -7,7 +7,7 @@ namespace Riff.Read.Chunk
     /// <summary>
     /// A chunk that has a byte[] payload that is lazily loaded on demand
     /// </summary>
-    public class LazyByteArrayChunkDescriptor : ChunkDescriptorBase 
+    public class LazyByteArrayChunkDescriptor : ChunkDescriptorBase
     {
         private readonly IStreamProvider _streamProvider;
 
@@ -29,24 +29,22 @@ namespace Riff.Read.Chunk
         }
 
         /// <summary>
-        /// Read the chunk data payload. RIFF chunk data can be very large (up to 2Gb), so it is lazy 
+        /// Read the chunk data payload. RIFF chunk data can be very large (up to 2Gb), so it is lazy
         /// loaded rather than loaded in the constructor.
         /// </summary>
         public override byte[] Data
         {
-            get 
+            get
             {
                 var source = _streamProvider.Provide();
                 source.Seek(ChunkOffset + RiffUtils.HeaderSize, SeekOrigin.Begin);
-                using (var reader = new BinaryReader(source))
-                {
-                    return reader.ReadBytes(Size);
-                }
+                using var reader = new BinaryReader(source);
+                return reader.ReadBytes(Size);
             }
         }
 
         /// <inheritdoc/>
-        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
+        public override ChunkBase CreateWriteChunk()
         {
             return new ByteDescriptorChunk(this);
         }

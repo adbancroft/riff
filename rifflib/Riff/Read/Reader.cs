@@ -4,10 +4,10 @@ using Riff.Read.Chunk;
 namespace Riff.Read
 {
     /// <summary>
-    /// 
+    /// Root call to read a RIFF file
     /// </summary>
     public static class Reader
-    {   
+    {
         /// <summary>
         /// Read a RIFF file into a series of chunks in a tree like structure.
         /// </summary>

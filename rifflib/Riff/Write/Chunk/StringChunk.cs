@@ -22,6 +22,6 @@ namespace Riff.Write.Chunk
         public override void WriteData(BinaryWriter writer)
         {
             writer.WriteChunkData(System.Text.Encoding.ASCII.GetBytes(Data+"\0"));
-        }        
+        }
     }
 }

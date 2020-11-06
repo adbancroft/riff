@@ -5,7 +5,7 @@ namespace Riff.Write.Chunk
     /// <summary>
     /// A set of extension methods for <cref see="BinaryWriter"/>
     /// </summary>
-    static class BinaryWriterExtensions
+    internal static class BinaryWriterExtensions
     {
         /// <summary>
         /// Write a fixed length ASCII string to the binary writer.

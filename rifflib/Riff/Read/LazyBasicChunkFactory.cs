@@ -12,6 +12,9 @@ namespace Riff.Read
         private readonly BinaryReader _reader;
         private readonly IStreamProvider _streamProvider;
 
+        /// <summary>
+        /// Construct the factory
+        /// </summary>
         /// <param name="reader">The source to read metadata from</param>
         /// <param name="streamProvider">The source to lazily read data from</param>
         public LazyBasicChunkFactory(BinaryReader reader, IStreamProvider streamProvider)
@@ -23,12 +26,12 @@ namespace Riff.Read
         ///<inheritdoc/>
         public ChunkDescriptorBase Create(string identifier)
         {
-            switch (identifier.ToLowerInvariant())
-            { 
-                case "riff": return new RiffChunkDescriptor(_reader, this);
-                case "list": return new ListChunkDescriptor(identifier, _reader, this);
-                default: return new LazyByteArrayChunkDescriptor(identifier, _reader, _streamProvider);
-            }
+            return (identifier.ToLowerInvariant()) switch
+            {
+                "riff" => new RiffChunkDescriptor(_reader, this),
+                "list" => new ListChunkDescriptor(identifier, _reader, this),
+                _ => new LazyByteArrayChunkDescriptor(identifier, _reader, _streamProvider),
+            };
         }
     }
 }

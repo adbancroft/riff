@@ -11,7 +11,7 @@ namespace Riff.Write.Chunk
     public static class ChunkExtensions
     {
         /// <summary>
-        /// Handy extension method to find a list chunk with a specific list type 
+        /// Handy extension method to find a list chunk with a specific list type
         /// </summary>
         /// <param name="source">ENumerable to search</param>
         /// <param name="listType">List type identifier</param>
@@ -29,7 +29,7 @@ namespace Riff.Write.Chunk
         /// <returns></returns>
         public static ChunkBase FindParent(this ChunkBase root, string path)
         {
-            return FindChunk(root, Regex.Matches(path, pathRegEx, RegexOptions.IgnoreCase).OfType<Match>().SkipLast(1));
+            return FindChunk(root, Regex.Matches(path, pathRegEx, RegexOptions.IgnoreCase).Where(f => f != null).SkipLast(1));
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Riff.Write.Chunk
         /// E.g. "LIST-hdrl-1\\\\strd"
         ///     Path to the second LIST chunk with list type "hdrl"
         ///     Path to the first chunk with identifier "strd"
-        /// 
+        ///
         /// </param>
         /// <returns></returns>
         public static ChunkBase FindChunk(this ChunkBase parent, string path)
@@ -74,7 +74,7 @@ namespace Riff.Write.Chunk
             int index = match.Groups["index"].Success
                         ? int.Parse(match.Groups["index"].Value)
                         : 0;
-            return enumerable.ElementAtOrDefault(index) ?? throw new ArgumentException($"Invalid chunk identifier: {match}", nameof(match));;
+            return enumerable.ElementAtOrDefault(index) ?? throw new ArgumentException($"Invalid chunk identifier: {match}", nameof(match));
         }
 
         private const string ChunkDelimiter = "^|[\\\\|]";
@@ -82,7 +82,7 @@ namespace Riff.Write.Chunk
         private const string IdExpression = "(?<id>.{4})";
         private const string ListExpression = "(?<list>.{4})";
         private const string IndexExpression = @"(?<index>\d+)";
-        private static string pathElementRegEx = $"{IdExpression}(?:{PartDelimiter}{ListExpression})?(?:{PartDelimiter}{IndexExpression})?";
-        private static string pathRegEx = $"(?:{ChunkDelimiter}){pathElementRegEx}";
+        private static readonly string pathElementRegEx = $"{IdExpression}(?:{PartDelimiter}{ListExpression})?(?:{PartDelimiter}{IndexExpression})?";
+        private static readonly string pathRegEx = $"(?:{ChunkDelimiter}){pathElementRegEx}";
     }
 }

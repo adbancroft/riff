@@ -3,7 +3,7 @@ using System.CommandLine;
 using System.CommandLine.Parsing;
 using System.Linq;
 
-namespace rifftool 
+namespace rifftool
 {
     public static class CommandExtensions
     {
@@ -19,7 +19,7 @@ namespace rifftool
                 command.AddOption(opt);
             }
         }
-        
+
         /// <summary>
         /// Add the options; 0 or 1 can be applied.
         /// </summary>
@@ -28,10 +28,7 @@ namespace rifftool
         public static void AddMutuallyExclusive(this Command command, params Option[] options)
         {
             AddOptions(command, options);
-            command.AddValidator(result => 
-            {
-                return ValidateMutualExclusion(result, options);
-            });
+            command.AddValidator(result => ValidateMutualExclusion(result, options));
         }
 
         /// <summary>
@@ -42,10 +39,7 @@ namespace rifftool
         public static void AddMutuallyExclusiveRequired(this Command command, params Option[] options)
         {
             AddOptions(command, options);
-            command.AddValidator(result => 
-            {               
-                return ValidateMutualExclusion(result, options) ?? ValidateOnlyOne(result, options);
-            });
+            command.AddValidator(result => ValidateMutualExclusion(result, options) ?? ValidateOnlyOne(result, options));
         }
 
         private static string ValidateMutualExclusion(CommandResult result, Option[] options)
@@ -54,7 +48,7 @@ namespace rifftool
             {
                 return "The options [" + ToString(options) + "] are mutually exclusive.";
             }
-            
+
             return null;
         }
 
@@ -64,7 +58,7 @@ namespace rifftool
             {
                 return "One of the options [" + ToString(options) + "] is required.";
             }
-            
+
             return null;
         }
 

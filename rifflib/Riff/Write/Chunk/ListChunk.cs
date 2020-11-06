@@ -20,7 +20,7 @@ namespace Riff.Write.Chunk
         }
 
         /// <summary>
-        /// Construct from a list chunk descriptor  
+        /// Construct from a list chunk descriptor
         /// </summary>
         /// <param name="source">The list chunk descriptor</param>
         public ListChunk(Riff.Read.Chunk.ListChunkDescriptor source)
@@ -59,21 +59,21 @@ namespace Riff.Write.Chunk
         #region IList<>
 
         /// <inheritdoc/>
-        public override ChunkBase this[int index] 
-        { 
-            get { return _subChunks[index]; } 
-            set { _subChunks[index] = value; } 
+        public override ChunkBase this[int index]
+        {
+            get { return _subChunks[index]; }
+            set { _subChunks[index] = value; }
         }
 
         /// <inheritdoc/>
-        public override int IndexOf(ChunkBase item) { return _subChunks.IndexOf(item); } 
+        public override int IndexOf(ChunkBase item) { return _subChunks.IndexOf(item); }
 
         /// <inheritdoc/>
-        public override void Insert(int index, ChunkBase item) { _subChunks.Insert(index, item); } 
+        public override void Insert(int index, ChunkBase item) { _subChunks.Insert(index, item); }
 
         /// <inheritdoc/>
-        public override void RemoveAt(int index) { _subChunks.RemoveAt(index); } 
-        
+        public override void RemoveAt(int index) { _subChunks.RemoveAt(index); }
+
         #endregion
 
         #region ICollection<>
@@ -85,19 +85,19 @@ namespace Riff.Write.Chunk
         public override bool IsReadOnly { get { return _subChunks.IsReadOnly; } }
 
         /// <inheritdoc/>
-        public override void Add(ChunkBase item)  { _subChunks.Add(item); } 
+        public override void Add(ChunkBase item)  { _subChunks.Add(item); }
 
         /// <inheritdoc/>
-        public override void Clear()  { _subChunks.Clear(); } 
+        public override void Clear()  { _subChunks.Clear(); }
 
         /// <inheritdoc/>
         public override bool Contains(ChunkBase item) { return _subChunks.Contains(item); }
 
         /// <inheritdoc/>
-        public override void CopyTo(ChunkBase[] array, int arrayIndex)  { _subChunks.CopyTo(array, arrayIndex); } 
+        public override void CopyTo(ChunkBase[] array, int arrayIndex)  { _subChunks.CopyTo(array, arrayIndex); }
 
         /// <inheritdoc/>
-        public override bool Remove(ChunkBase item)  { return _subChunks.Remove(item); } 
+        public override bool Remove(ChunkBase item)  { return _subChunks.Remove(item); }
 
         #endregion
 

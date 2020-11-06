@@ -1,6 +1,6 @@
 namespace Riff
 {
-    static class RiffUtils
+    internal static class RiffUtils
     {
         /// <summary>
         /// Size of the identifier field in bytes.
@@ -21,7 +21,7 @@ namespace Riff
         /// Size of the fixed chunk header fields in bytes.
         /// </summary>
         public const int HeaderSize = IdentifierSize + LengthSize;
-        
+
         /// <summary>
         /// RIFF chunks are WORD aligned, so compute the necessary padding
         /// </summary>
@@ -30,11 +30,11 @@ namespace Riff
         public static int CalculatePadding(int size)
         {
             const int wordSize = sizeof(short);
-            return ((size + wordSize - 1) / wordSize * wordSize) - size; 
+            return ((size + wordSize - 1) / wordSize * wordSize) - size;
         }
 
         /// <summary>
-        /// Calculate total chunk size from start of the chunk identifier to 
+        /// Calculate total chunk size from start of the chunk identifier to
         /// the end of the payload, including padding.
         /// </summary>
         /// <param name="dataSize">Chunk data size</param>

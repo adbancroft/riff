@@ -6,30 +6,23 @@ using Riff.Write.Chunk;
 
 namespace rifftool
 {
-    class AddChunkCommand : Command
+    internal class AddChunkCommand : Command
     {
         public AddChunkCommand()
             : base("addchunk", "Add a chunk to a RIFF file")
         {
-            AddOption(new Option<FileInfo>(new [] {"--output", "-o"}, "The path to wrie the updated RIFF file") 
-                { 
-                    IsRequired = true 
+            AddOption(new Option<FileInfo>(new [] {"--output", "-o"}, "The path to wrie the updated RIFF file")
+                {
+                    IsRequired = true
                 });
-            AddOption(new Option<string>("--parent", () => String.Empty, "Slash delimited path of new chunks parent. E.g. LIST-hdrl-1\\INFO") 
-                { 
-                    
-                });
-            AddOption(new Option<string>("--name", "The name of the new chunk. E.g. IDIT. Use a slash delimited path to add a hierarchy. E.g. INFO\\IDIT") 
-                { 
-                    IsRequired = true 
+            AddOption(new Option<string>("--parent", () => String.Empty, "Slash delimited path of new chunks parent. E.g. LIST-hdrl-1\\INFO"));
+            AddOption(new Option<string>("--name", "The name of the new chunk. E.g. IDIT. Use a slash delimited path to add a hierarchy. E.g. INFO\\IDIT")
+                {
+                    IsRequired = true
                 });
             this.AddMutuallyExclusiveRequired(
-                new Option<string>("--data", "The data for the new chunk.") 
-                { 
-                },
-                new Option<FileInfo>("--filedata", "Path to a file containing The data for the new chunk.") 
-                { 
-                }.ExistingOnly());
+                new Option<string>("--data", "The data for the new chunk."),
+                new Option<FileInfo>("--filedata", "Path to a file containing The data for the new chunk.").ExistingOnly());
 
             Handler = CommandHandler.Create<FileInfo, FileInfo, string, string, string, FileInfo>(Add);
         }
@@ -59,14 +52,12 @@ namespace rifftool
         {
             if (filedata!=null)
             {
-                using (var sourceStream = new FileStream(filedata.FullName, FileMode.Open))
-                using (var ms = new MemoryStream())
-                {
-                    sourceStream.CopyTo(ms);
-                    return ms.ToArray();
-                }
+                using var sourceStream = new FileStream(filedata.FullName, FileMode.Open);
+                using var ms = new MemoryStream();
+                sourceStream.CopyTo(ms);
+                return ms.ToArray();
             }
-            
+
             return System.Text.Encoding.ASCII.GetBytes(data);
         }
     }

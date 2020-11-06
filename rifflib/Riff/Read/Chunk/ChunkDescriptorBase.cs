@@ -28,14 +28,14 @@ namespace Riff.Read.Chunk
             Requires.NotNullOrWhiteSpace(identifier, nameof(identifier));
             Requires.Argument(identifier.Length==4, nameof(identifier), "Invalid identifier: "+ identifier);
             Requires.NotNull(reader, nameof(reader));
-            
+
             Identifier = identifier;
             ChunkOffset = reader.BaseStream.Position-RiffUtils.IdentifierSize;
             Size = reader.ReadInt32();
         }
 
         /// <summary>
-        /// The offset of the start of this chunk from the beginning of the input stream 
+        /// The offset of the start of this chunk from the beginning of the input stream
         /// </summary>
         public long ChunkOffset { get; }
 
@@ -54,7 +54,7 @@ namespace Riff.Read.Chunk
         public int Size { get; }
 
         /// <summary>
-        /// Get the chunk data 
+        /// Get the chunk data
         /// </summary>
         [JsonIgnore]
         public abstract byte[] Data { get;}
@@ -62,7 +62,7 @@ namespace Riff.Read.Chunk
         /// <summary>
         /// Create the corresponding write chunk
         /// </summary>
-        public abstract Riff.Write.Chunk.ChunkBase CreateWriteChunk();
+        public abstract Write.Chunk.ChunkBase CreateWriteChunk();
 
         #region IEnumerable
 
