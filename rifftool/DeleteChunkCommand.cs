@@ -1,7 +1,7 @@
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
-using Riff.Write.Chunk;
+using Riff;
 
 namespace rifftool
 {

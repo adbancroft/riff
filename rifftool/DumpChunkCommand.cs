@@ -2,7 +2,7 @@ using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
-using Riff.Write.Chunk;
+using Riff;
 
 namespace rifftool
 {
@@ -20,7 +20,7 @@ namespace rifftool
         private static void Dump(FileInfo input, FileInfo output, string chunkpath)
         {
             var readChunks = input.ReadRiff();
-            var writeChunks = readChunks.CreateWriteChunk() as ListChunk;
+            var writeChunks = readChunks.CreateWriteChunk();
             var dumpChunk = writeChunks.FindChunk(chunkpath);
 
             var outStream = Console.OpenStandardOutput();
