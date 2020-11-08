@@ -16,7 +16,7 @@ namespace Riff.Read.Chunk
     /// Chunks can contain other chunks, in a tree structure.
     /// </remarks>
     [JsonObject]
-    public abstract class ChunkDescriptorBase : IEnumerable<ChunkDescriptorBase>
+    public abstract class ChunkDescriptorBase : IEnumerable<ChunkDescriptorBase>, IChunk
     {
         /// <summary>
         /// Construct by reading from a BinaryReader

@@ -12,7 +12,7 @@ namespace Riff.Write.Chunk
     /// <remarks>
     /// Chunks can contain other chunks, in a tree structure.
     /// </remarks>
-    public abstract class ChunkBase : IList<ChunkBase>
+    public abstract class ChunkBase : IList<ChunkBase>, IChunk
     {
         /// <summary>
         /// The 4 character chunk identifier. E.g. LIST

@@ -8,7 +8,7 @@ namespace Riff.Write.Chunk
     /// <summary>
     /// A writable chunk that stores child chunks
     /// </summary>
-    public class ListChunk : ChunkBase
+    public class ListChunk : ChunkBase, IListChunk
     {
         private readonly IList<ChunkBase> _subChunks = new List<ChunkBase>();
 

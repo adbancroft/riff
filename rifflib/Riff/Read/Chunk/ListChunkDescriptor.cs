@@ -9,7 +9,7 @@ namespace Riff.Read.Chunk
     /// <summary>
     /// A chunk descriptor that has child chunks.
     /// </summary>
-    public class ListChunkDescriptor : ChunkDescriptorBase
+    public class ListChunkDescriptor : ChunkDescriptorBase, IListChunk
     {
         [JsonProperty("ChildChunks", Order = 1)]
         private readonly IList<ChunkDescriptorBase> _subChunks;
