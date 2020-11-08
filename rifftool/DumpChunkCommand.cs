@@ -11,10 +11,7 @@ namespace rifftool
         public DumpChunkCommand()
             : base("dumpchunk", "Write chunk data to a file")
         {
-            AddOption(new Option<FileInfo>(new [] {"--output", "-o"}, "The path to wrie the updated RIFF file")
-                {
-                    IsRequired = true
-                });
+            AddOption(new Option<FileInfo>(new [] {"--output", "-o"}, "The path to wrie the updated RIFF file. Default to stdout"));
             AddOption(new Option<string>("--chunkpath", () => String.Empty, "Slash delimited path of chunk to dump. E.g. LIST-hdrl-1\\INFO\\IDIT"));
 
             Handler = CommandHandler.Create<FileInfo, FileInfo, string>(Dump);
@@ -26,7 +23,12 @@ namespace rifftool
             var writeChunks = readChunks.CreateWriteChunk() as ListChunk;
             var dumpChunk = writeChunks.FindChunk(chunkpath);
 
-            using var writer = new BinaryWriter(new FileStream(output.FullName, FileMode.OpenOrCreate));
+            var outStream = Console.OpenStandardOutput();
+            if (output!=null)
+            {
+                outStream = new FileStream(output.FullName, FileMode.OpenOrCreate);
+            }
+            using var writer = new BinaryWriter(outStream);
             dumpChunk.WriteData(writer);
         }
     }
