@@ -11,17 +11,6 @@ namespace Riff.Write.Chunk
     public static class ChunkExtensions
     {
         /// <summary>
-        /// Handy extension method to find a list chunk with a specific list type
-        /// </summary>
-        /// <param name="source">ENumerable to search</param>
-        /// <param name="listType">List type identifier</param>
-        /// <returns></returns>
-        public static IEnumerable<ListChunk> WhereListType(this IEnumerable<ChunkBase> source, string listType)
-        {
-            return source.OfType<ListChunk>().Where(cb => string.Equals(cb.ListType, listType, StringComparison.InvariantCultureIgnoreCase));
-        }
-
-        /// <summary>
         /// Find a chunks parent
         /// </summary>
         /// <param name="root">Root chunk to search from</param>

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Riff.Read.Chunk
+namespace Riff
 {
     /// <summary>
     /// Chunk extension methods
@@ -13,10 +13,10 @@ namespace Riff.Read.Chunk
         /// </summary>
         /// <param name="source">The sequence to search</param>
         /// <param name="listType">The list type identifier</param>
-        /// <returns>An <see cref="IEnumerable{ListChunkDescriptor}"/> that contains elements from the input sequence that satisfy the condition.</returns>
-        public static IEnumerable<ListChunkDescriptor> WhereListType(this IEnumerable<ChunkDescriptorBase> source, string listType)
+        /// <returns>An <see cref="IEnumerable{IListChunk}"/> that contains elements from the input sequence that satisfy the condition.</returns>
+        public static IEnumerable<IListChunk> WhereListType(this IEnumerable<IChunk> source, string listType)
         {
-            return source.OfType<ListChunkDescriptor>().Where(cb => cb.ListType==listType);
+            return source.OfType<IListChunk>().Where(cb => cb.ListType==listType);
         }
     }
 }
