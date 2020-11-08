@@ -15,9 +15,8 @@ namespace Riff.Read.Chunk
         private readonly IList<ChunkDescriptorBase> _subChunks;
 
         /// <summary>
-        /// THe list type FourCC tag
+        /// The list type FourCC tag
         /// </summary>
-        /// <value></value>
         public String ListType { get; }
 
         /// <inheritdoc/>
@@ -38,13 +37,13 @@ namespace Riff.Read.Chunk
             Assumes.NotNullOrEmpty(ListType);
             Assumes.True(ListType.Length==4, "Invalid list type: "+ ListType);
 
-            _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.LengthSize);
+            _subChunks = ReadSubChunks(reader, chunkFactory, Size-RiffUtils.ListTypeSize);
         }
 
         /// <inheritdoc/>
-        public override Riff.Write.Chunk.ChunkBase CreateWriteChunk()
+        public override Write.Chunk.ChunkBase CreateWriteChunk()
         {
-            return new Riff.Write.Chunk.ListChunk(this);
+            return new Write.Chunk.ListChunk(this);
         }
 
         #region IEnumerable
