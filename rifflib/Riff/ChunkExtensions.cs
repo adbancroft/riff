@@ -46,7 +46,6 @@ namespace Riff
         /// E.g. "LIST-hdrl-1\\\\strd"
         ///     Path to the second LIST chunk with list type "hdrl"
         ///     Path to the first chunk with identifier "strd"
-        ///
         /// </param>
         /// <returns></returns>
         public static T FindChunk<T>(this T parent, string path)
@@ -83,7 +82,7 @@ namespace Riff
             return enumerable.ElementAtOrDefault(index) ?? throw new ArgumentException($"Invalid chunk identifier: {match}", nameof(match));
         }
 
-        private const string ChunkDelimiter = "^|[\\\\|]";
+        private const string ChunkDelimiter = "^|[\\\\|/]";
         private const string PartDelimiter = "-";
         private const string IdExpression = "(?<id>.{4})";
         private const string ListExpression = "(?<list>.{4})";
