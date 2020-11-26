@@ -7,5 +7,15 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
     <PackageReference Include="Validation" Version="2.4.22"/>
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.1"/>
+    <!-- <PackageReference Include="XmlDoc2CmdletDoc" Version="0.4.0-dotnetcore0001"/> -->
   </ItemGroup>
+
+  <!-- Because XmlDoc2CmdletDoc 0.4.0-dotnetcore0001 doesn't support netstandard2.1 -->
+  <Target Name="XmlDoc2CmdletDoc"
+          AfterTargets="CopyFilesToOutputDirectory"
+          Inputs="$(TargetPath)"
+          Outputs="$(TargetPath)-Help.xml">
+      <Exec Command="%userprofile%\.nuget\packages\xmldoc2cmdletdoc\0.4.0-dotnetcore0001\TOOLS\netcoreapp3.1\XmlDoc2CmdletDoc.exe $(TargetPath)" />
+  </Target>
 </Project>
